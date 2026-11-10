@@ -1,3 +1,10 @@
+import sampleWarmPaper from '../assets/sample-warm-paper.svg?no-inline'
+import sampleBlueFrame from '../assets/sample-blue-frame.svg?no-inline'
+import sampleFlowerStudy from '../assets/sample-flower-study.svg?no-inline'
+import samplePaperRosette from '../assets/sample-paper-rosette.svg?no-inline'
+import sampleTerracottaArch from '../assets/sample-terracotta-arch.svg?no-inline'
+import sampleInkNotes from '../assets/sample-ink-notes.svg?no-inline'
+
 export const conversationStatuses = {
   unanswered: 'Chưa trả lời',
   advising: 'Đang tư vấn',
@@ -18,9 +25,23 @@ export const gradStudio = {
     rooms: ['Phòng A', 'Phòng B'],
   },
   services: [
-    { id: 'graduation', name: 'Tốt nghiệp cá nhân', price: '1.800.000đ' },
-    { id: 'couple', name: 'Chân dung đôi', price: '2.400.000đ' },
-    { id: 'family', name: 'Gia đình nhiều thế hệ', price: '3.200.000đ' },
+    { id: 'yearbook', name: 'Kỷ yếu lớp', contextLabel: 'Gói Kỷ yếu lớp', description: 'Lưu lại khoảnh khắc đáng nhớ cùng lớp qua bộ ảnh tập thể nhiều sắc màu.', price: '350.000đ/người' },
+    { id: 'graduation', name: 'Tốt nghiệp', contextLabel: 'Gói Tốt nghiệp', description: 'Bộ ảnh ngày ra trường riêng, có thể trao đổi thêm về makeup.', price: '1.800.000đ' },
+    { id: 'portrait-cv', name: 'Chân dung/CV', contextLabel: 'Gói Chân dung/CV', description: 'Ảnh chân dung chỉn chu cho hồ sơ, portfolio và những bước tiếp theo trong hành trình nghề nghiệp.', price: '690.000đ' },
+  ],
+  samples: [
+    { id: 'warm-paper', title: 'Nắng trên trang giấy', src: sampleWarmPaper, alt: 'Minh họa quyển sổ màu kem dưới vệt nắng vàng' },
+    { id: 'blue-frame', title: 'Khung trời tháng mười', src: sampleBlueFrame, alt: 'Minh họa khung cửa xanh mở ra bầu trời sáng' },
+    { id: 'flower-study', title: 'Một nhành hoa nhỏ', src: sampleFlowerStudy, alt: 'Minh họa bình hoa đỏ bên chồng sách' },
+    { id: 'paper-rosette', title: 'Dải ruy băng', src: samplePaperRosette, alt: 'Minh họa dải ruy băng tốt nghiệp trên nền giấy' },
+    { id: 'terracotta-arch', title: 'Sắc gạch ấm', src: sampleTerracottaArch, alt: 'Minh họa mái vòm màu đất nung với họa tiết hình học' },
+    { id: 'ink-notes', title: 'Ghi chú ngày vui', src: sampleInkNotes, alt: 'Minh họa những tấm thiệp và nét mực xanh' },
+  ],
+  processSteps: [
+    { id: 'ask', title: 'Hỏi tư vấn', description: 'Chia sẻ ý tưởng, gói chụp và mong muốn của bạn.' },
+    { id: 'check', title: 'Studio kiểm tra lịch', description: 'Studio rà soát lịch nhân sự và không gian chụp.' },
+    { id: 'agree', title: 'Thống nhất giờ', description: 'Cùng trao đổi và chọn khung giờ phù hợp.' },
+    { id: 'deposit', title: 'Đặt cọc 30% để giữ lịch', description: 'Lịch được giữ sau khi khoản cọc được thanh toán thành công.' },
   ],
   package: {
     name: 'Gói Tốt nghiệp Premium',
@@ -58,8 +79,8 @@ export const gradStudio = {
   },
   chat: {
     screen1: [
-      { id: 'linh-question', sender: 'Linh', time: '09:12', text: 'Gói tốt nghiệp có makeup còn lịch 24/10 lúc 09:00 không?' },
-      { id: 'studio-reply', sender: 'GradStudio', time: '09:16', text: 'Studio sẽ kiểm tra lịch của nhân viên và phòng rồi tư vấn lại cho bạn nhé.' },
+      { id: 'linh-question', sender: 'Linh', time: '17:20', text: 'Gói tốt nghiệp có makeup còn lịch 24/10 lúc 09:00 không?' },
+      { id: 'studio-reply', sender: 'GradStudio', time: '17:21', text: 'Để mình kiểm tra lịch cho bạn nhé' },
     ],
     screen2: [
       { id: 'admin-intro', sender: 'Thảo', time: '09:30', text: 'Chào Linh, khung 09:00 đang trùng lịch của Mai. Mai bận 08:00–12:00.' },
