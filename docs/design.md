@@ -1,10 +1,10 @@
 # GradStudio Design System
 
-Adapted from the *TypeGallery* design system (typography-forward, editorial, warm cream and brown, flat and square) and rewritten for the GradStudio PA#2 prototype: React + plain CSS, three screens, 360 / 768 / 1280 px.
+Adapted from the *TypeGallery* design system (typography-forward, editorial, warm cream and brown) and rewritten for the GradStudio PA#2 prototype: React + plain CSS, three screens, 360 / 768 / 1280 px.
 
 **Precedence:** if anything here conflicts with `AGENTS.md` or the PA#2 rubric, `AGENTS.md` and the rubric win. This file is read-only for agents.
 
-**Style in one line:** type hierarchy carries the design; cream surfaces, deep brown text, rust accent; square corners, no shadows, no decoration that competes with the text.
+**Style in one line:** type hierarchy carries the design; cream surfaces, deep brown text, rust accent; rounded corners, no shadows, no decoration that competes with the text.
 
 ---
 
@@ -92,9 +92,10 @@ One scale only. Every margin, padding and gap uses these tokens. Values outside 
 
 ## Shape and elevation
 
-- `--radius: 0` everywhere. No rounded corners on any surface, button, input, card, chip or chat bubble.
+- Rounded corners are used across all components. Use `--radius-sm` for compact controls and chips, `--radius-md` for buttons, cards, and panels, and `--radius-lg` for the Screen 1 chat panel and message bubbles. Component CSS must use these tokens only; no raw radius values.
 - No shadows. Hierarchy comes from type scale, weight, colour and spacing.
 - Focus: `outline: 2px solid var(--color-accent); outline-offset: 2px;` on every focusable element. Never remove an outline without this replacement.
+- Floating elements using `position: fixed` are allowed only at `min-width: 1280px`. Below 1280px all elements stay in normal page flow (no fixed, sticky, or absolute positioning that covers content). Reserve space with padding on the page container so floating elements never cover content at 1280, 1440, or 1920px. Header and nav stay non-sticky. Shadows remain absent.
 - No gradients, patterns or ornaments. Hover states are decorative only; no information appears only on hover. No tooltips (they do not work on touch).
 - Respect `prefers-reduced-motion`; no motion is required.
 
@@ -109,9 +110,10 @@ Mobile first. Write base CSS for 360 px, then `@media (min-width: 768px)` and `@
 - Shared shell on every page: `<header>` with the brand and `<nav>`, `<main>`, `<footer>`. The nav is always visible and wraps; no JavaScript toggle. Items that lead nowhere are shown as muted text "chưa có", not as links.
 - Only the page scrolls. No inner scroll column hides content. Wide calendars or tables scroll inside their own `overflow-x: auto` wrapper, and nothing else does.
 
+
 | Screen | 360 px | 768 px | 1280 px |
 |---|---|---|---|
-| 1. Services and chat | One column: intro, three services, then the chat as an in-flow section (never floating, never covering content) | Services in 2 to 3 columns; chat below | Intro and chat side by side; services in 3 columns |
+| 1. Services and chat | One column: intro, three services, then the chat in normal flow | Services in 2 to 3 columns; chat below in normal flow | Intro and services in the page flow; chat may float fixed at bottom-right with reserved space so it never covers content |
 | 2. Advice and clash | One column in order: conversation list, chat, Booking mới form (fully visible), resource calendar and suggested times | Two columns: list and chat | Three columns: list, chat with form, calendar; the page scrolls |
 | 3. Review and pay | One column: week strip, timeline, booking card | Booking card beside the timeline | Same, with comfortable measure |
 
@@ -124,7 +126,7 @@ Mobile first. Write base CSS for 360 px, then `@media (min-width: 768px)` and `@
 ## Components
 
 ### Buttons
-Square, understated, Manrope 500, 16 px. **Every standalone button and link is at least 44 px tall** (`min-height: 44px`, `min-width: 44px`). Links inside a sentence are exempt.
+`--radius-md`, understated, Manrope 500, 16 px. **Every standalone button and link is at least 44 px tall** (`min-height: 44px`, `min-width: 44px`). Links inside a sentence are exempt.
 - **Primary:** `#3C1518` fill, `#F5F0E8` text, no border.
 - **Secondary:** transparent, `#3C1518` text, 1px `#3C1518` border.
 - **Ghost:** transparent, `#A44A3F` text, underline on hover.
@@ -132,16 +134,16 @@ Square, understated, Manrope 500, 16 px. **Every standalone button and link is a
 - **Disabled:** `#EDE8DE` fill, `#6B5E55` text, 1px dashed `#756961` border, `cursor: not-allowed`, `disabled` attribute. Do not use low opacity. Always put a short visible note next to it (for example next to `Thanh toán cọc 30%`: "Thanh toán chưa khả dụng ở bản prototype này").
 
 ### Cards
-`#FFFFFF` fill, 1px `#D6CFC4` border, square, no shadow. Padding `--space-5` at 360 px, `--space-6` from 768 px. Structure comes from typographic hierarchy.
+`#FFFFFF` fill, 1px `#D6CFC4` border, `--radius-md`, no shadow. Padding `--space-5` at 360 px, `--space-6` from 768 px. Structure comes from typographic hierarchy.
 
 ### Inputs and labels
 - Every input has a visible `<label>` above it (a placeholder is not a label).
-- Height at least 44px, 16px Manrope 400, 1px `#8B7E74` border, `#FFFFFF` fill, square.
+- Height at least 44px, 16px Manrope 400, 1px `#8B7E74` border, `#FFFFFF` fill, `--radius-sm`.
 - Hover: border `#3C1518`. Focus: 2px accent outline. Error: border `#A44A3F`, fill `#FDF6F5`, plus error text. Disabled: `#EDE8DE` fill, `#D6CFC4` border, muted text.
 - Checkboxes and radios: 20px, 1px `#8B7E74` border, checked `#3C1518` fill with cream mark, with a clickable label (at least 44px target area).
 
 ### Status chips (text always visible)
-Square, 14px Manrope 600, `min-height: 28px` (non-interactive), padding `--space-1` `--space-3`, normal case (no all-caps; it hurts Vietnamese diacritics).
+`--radius-sm`, 14px Manrope 600, `min-height: 28px` (non-interactive), padding `--space-1` `--space-3`, normal case (no all-caps; it hurts Vietnamese diacritics).
 
 | Status | Where | Style |
 |---|---|---|
@@ -156,16 +158,16 @@ Square, 14px Manrope 600, `min-height: 28px` (non-interactive), padding `--space
 Use the exact names from the brief. Screen 3 may show `Đã thống nhất lịch · Chờ cọc 30%`.
 
 ### Filter chips (conversation filters, if shown)
-Only if they work; they are links or buttons at least 44px tall at 360 px. Default: transparent, muted text `#6B5E55`, 1px `#D6CFC4` border. Selected: `#3C1518` fill, cream text. A filter that does nothing is a disabled chip with a note, or is removed.
+Only if they work; they are links or buttons at least 44px tall at 360 px. Use `--radius-sm`. Default: transparent, muted text `#6B5E55`, 1px `#D6CFC4` border. Selected: `#3C1518` fill, cream text. A filter that does nothing is a disabled chip with a note, or is removed.
 
 ### Lists
 Row height at least 48px (conversation list rows are links, at least 44px), horizontal padding `--space-5`, 1px `#D6CFC4` divider, hover `#EDE8DE`, active row `#3C1518` with cream text, Manrope 16px.
 
 ### Chat
-In normal page flow, never `position: fixed` over content. Messages are square blocks: customer messages on `#EDE8DE`, studio messages on `#FFFFFF` with a 1px divider border. Each message shows sender and time in caption text. The composer is a labelled input plus a Send button; where sending has no next page in PA#2 the button is disabled with a visible note.
+Chat panels use `--radius-md`; the Screen 1 panel and message bubbles use `--radius-lg`. Floating is allowed only from `min-width: 1280px`, with page-container space reserved so the panel never covers content at 1280, 1440, or 1920px. Below 1280px chat panels stay in normal flow. Customer messages use `#EDE8DE`, studio messages use `#FFFFFF` with a 1px divider border. Each message shows sender and time in caption text. The composer is a labelled input plus a Send button; where sending has no next page in PA#2 the button is disabled with a visible note.
 
 ### Images and avatars
-No photographs of real people. Use initials in a square block, inline SVG illustrations, or typographic hero treatments. Any licensed image must have its source named in `PROTOTYPE.md`. Every `<img>` has `alt`; decorative SVGs use `aria-hidden="true"`. `img, svg { max-width: 100%; height: auto; }`.
+No photographs of real people. Use initials in a rounded block, inline SVG illustrations, or typographic hero treatments. Any licensed image must have its source named in `PROTOTYPE.md`. Every `<img>` has `alt`; decorative SVGs use `aria-hidden="true"`. `img, svg { max-width: 100%; height: auto; }`.
 
 ---
 
@@ -192,7 +194,9 @@ No photographs of real people. Use initials in a square block, inline SVG illust
   --space-5: 24px; --space-6: 36px; --space-7: 48px; --space-8: 72px;
 
   --control-height: 44px;
-  --radius: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 }
 ```
 
@@ -206,7 +210,7 @@ Breakpoints (media queries cannot read custom properties; write the values): `76
 2. **Do** give each page one clearly most important element (the services on Screen 1, the booking form on Screen 2, the deposit action on Screen 3).
 3. **Do** use the cream background consistently; white appears only on raised surfaces (cards, inputs).
 4. **Do** use real Vietnamese placeholder data for the GradStudio story (Linh, Mai, Tuấn, GS-1024, 1.800.000đ, 540.000đ, 1.260.000đ), including at least one long name or title.
-5. **Don't** use more than two typefaces, rounded corners, shadows, gradients or decorative graphics.
+5. **Don't** use more than two typefaces, raw `border-radius` values, shadows, gradients or decorative graphics. Use the radius tokens for all components.
 6. **Don't** set body text, labels or messages below 16 px (14 px is for captions and status chips only), or any control under 44 px tall at 360 px.
 7. **Don't** convey state by colour, hatching, opacity or hover alone.
 8. **Don't** use `!important`, `overflow-x: hidden` to hide overflow, fixed widths, `href="#"`, or any CDN resource.

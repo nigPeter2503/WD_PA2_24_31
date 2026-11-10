@@ -33,7 +33,7 @@ Stack: **React + Vite, plain CSS**. Checked against the PA#2 rubric and the Grad
 3. Actions with no next page (`Thanh toán cọc 30%`, send message) are **disabled buttons with a short visible note**. Never `href="#"`.
 4. Screen 2: chat and the whole `Booking mới` form are readable by scrolling the page at every width. No inner scroll column hiding the form.
 5. Resource calendar: every booking label fully readable at every width (no truncated "Linh · yê…"). A clash is never shown by colour or hatching alone; add text or an icon.
-6. Screen 1 chat box does not float over content. At 360 px it hides nothing.
+6. Floating elements are allowed only from min-width 1280 px; below that, all elements stay in normal page flow. Reserve page-container space so floating elements never cover content at 1280, 1440, or 1920 px. Header and nav stay non-sticky.
 7. Links to nowhere (Booking, Lịch studio, Tài nguyên, Nhân sự, Xem đường đi, Ảnh đã chọn, footer links): remove them, or show them plainly as "chưa có".
 8. Flow changes role twice and there is no sign-in: link labels say who continues, e.g. "Studio staff: open this conversation".
 
@@ -68,6 +68,7 @@ Stack: **React + Vite, plain CSS**. Checked against the PA#2 rubric and the Grad
 - Body text at least 16 px. Text and buttons pass 4.5:1 contrast.
 - **No `!important`.** No raw px values for spacing outside the scale.
 - Each page has one clearly most important element.
+- Rounded corners are part of the design language for all components. Use only the radius tokens defined in `docs/design.md` and `src/styles/tokens.css` for `border-radius`. Floating elements are allowed only at `min-width: 1280px`, with page-container space reserved so they never cover content at 1280, 1440, or 1920 px. Below 1280px, elements stay in normal flow; the header and nav are non-sticky. No gradients or shadows.
 
 ## Permissions
 
