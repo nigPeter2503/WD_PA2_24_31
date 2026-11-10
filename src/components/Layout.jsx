@@ -3,7 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 const imageSource = 'https://www.magnific.com/free-vector/twitch-banner-template-class-2023-graduation_40444019.htm';
 
 function Layout({ children }) {
-  const isHomePage = useLocation().pathname === '/';
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+  const isAdvicePage = pathname === '/advice';
 
   return (
     <div className={`site-shell${isHomePage ? ' home-shell' : ''}`}>
@@ -15,7 +17,7 @@ function Layout({ children }) {
           <Link className='nav-link' to='/review'>Lịch chụp của tôi</Link>
         </nav>
       </header>
-      <main className={`site-main${isHomePage ? ' site-main-home' : ''}`}>
+      <main className={`site-main${isHomePage ? ' site-main-home' : ''}${isAdvicePage ? ' site-main-advice' : ''}`}>
         {children}
       </main>
       <footer className='site-footer'>
