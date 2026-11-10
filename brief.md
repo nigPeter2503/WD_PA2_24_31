@@ -236,3 +236,11 @@ Report each step and clearly say which steps you did not run.
 ## Ngô Gia Minh — 2026-11-10 19:05:30 (+07:00)
 
 Make the background fill the page using `D:\Homework\Web\PA3\PA2_Dir\src\assets\Background_final.jpg`. Also, shrink the chat button and center its icon.
+
+## Ngô Gia Minh — 2026-11-10 19:43:38 (+07:00)
+Let the two remaining routes be completed gradually. Remove the “No schedule conflicts” claim from Screen 1. I have updated brief.md and AI-LOG.md; recheck them and the implementation for consistency. The hero gradient is optional, and I may choose not to use it. Which approach do you recommend we keep? I have just updated AI-LOG.md again, so please check it once more. If any conflicts remain, give me concrete steps to resolve and synchronize the files.
+
+## Ngô Gia Minh — 2026-11-10 19:44:23 (+07:00)
+Follow AGENTS.md. Use this as the source link for the hero image: https://www.magnific.com/free-vector/twitch-banner-template-class-2023-graduation_40444019.htm#fromView=detail&position=0&uuid=f16ff0d0-78b8-4ede-83ca-673276ce8014&track=ais_hybrid
+
+Make the agreed changes for me.
