@@ -63,10 +63,10 @@ Stack: **React + Vite, plain CSS**. Checked against the PA#2 rubric and the Grad
 
 ## Design system (plain CSS)
 
-- Spacing scale as custom properties in `src/styles/tokens.css`: `--space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px;` (team may change, then record in `PROTOTYPE.md`). Use only these for margin, padding, gap.
+- Spacing: use only `var(--space-1)` through `var(--space-8)`, defined in `src/styles/tokens.css`. Do not write raw px values for margin, padding, or gap, and do not add new spacing variables. `tokens.css` is the single source of truth for the values; do not copy them into this file. If a layout seems to need an off-scale value, use the nearest step and say so in your reply.
 - Breakpoints: `768px`, `1280px` (min-width).
 - Body text at least 16 px. Text and buttons pass 4.5:1 contrast.
-- **No `!important`.** No magic numbers outside the scale beyond a handful.
+- **No `!important`.** No raw px values for spacing outside the scale.
 - Each page has one clearly most important element.
 
 ## Permissions
