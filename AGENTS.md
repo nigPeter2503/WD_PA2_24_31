@@ -15,7 +15,7 @@ Stack: **React + Vite, plain CSS**. Checked against the PA#2 rubric and the Grad
 
 | Route (hash) | Screen | Who | State shown when opened directly |
 |---|---|---|---|
-| `/#/` (`index`) | Services and chat | Customer (Linh) | Three services + Linh's question and the studio's "we will check" reply |
+| `/#/` (`index`) | Services | Customer (Linh) | Three services; consultation links open the Tư vấn screen |
 | `/#/advice` | Advice and clash handling | Admin (Thảo) | After Linh agrees: 14:00 chosen, conversation **Đã chốt lịch**, **Tạo booking** enabled, note that 09:00 clashed (Mai busy 08:00–12:00) |
 | `/#/review` | Review appointment and pay deposit | Customer (Linh) | Booking GS-1024 waiting for deposit |
 
@@ -35,7 +35,7 @@ Stack: **React + Vite, plain CSS**. Checked against the PA#2 rubric and the Grad
 5. Resource calendar: every booking label fully readable at every width (no truncated "Linh · yê…"). A clash is never shown by colour or hatching alone; add text or an icon.
 6. Floating elements are allowed only from min-width 1280 px; below that, all elements stay in normal page flow. Reserve page-container space so floating elements never cover content at 1280, 1440, or 1920 px. Header and nav stay non-sticky.
 7. Links to nowhere (Booking, Lịch studio, Tài nguyên, Nhân sự, Xem đường đi, Ảnh đã chọn, footer links): remove them, or show them plainly as "chưa có".
-8. Flow changes role twice and there is no sign-in: link labels say who continues, e.g. "Studio staff: open this conversation".
+8. Flow changes role twice and there is no sign-in: consultation links make it clear that studio staff continue the conversation on the Tư vấn screen.
 
 ## Navigation
 
@@ -68,7 +68,7 @@ Stack: **React + Vite, plain CSS**. Checked against the PA#2 rubric and the Grad
 - Body text at least 16 px. Text and buttons pass 4.5:1 contrast.
 - **No `!important`.** No raw px values for spacing outside the scale.
 - Each page has one clearly most important element.
-- Rounded corners are part of the design language for all components. Use only the radius tokens defined in `docs/design.md` and `src/styles/tokens.css` for `border-radius`. Floating elements are allowed only at `min-width: 1280px`, with page-container space reserved so they never cover content at 1280, 1440, or 1920 px. Below 1280px, elements stay in normal flow; the header and nav are non-sticky. No gradients or shadows.
+- Rounded corners are part of the design language for all components. Use only `--radius-sm`, `--radius-md`, `--radius-lg`, and `--radius-full` for `border-radius`; token values live in `src/styles/tokens.css`. Floating elements are allowed only at `min-width: 1280px`, with page-container space reserved so they never cover content at 1280, 1440, or 1920 px. Below 1280px, elements stay in normal flow; the header and nav are non-sticky. No decorative gradients or shadows; Screen 1 may use a dark overlay gradient on its hero image for text contrast.
 
 ## Permissions
 

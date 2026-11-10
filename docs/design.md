@@ -92,11 +92,11 @@ One scale only. Every margin, padding and gap uses these tokens. Values outside 
 
 ## Shape and elevation
 
-- Rounded corners are used across all components. Use `--radius-sm` for compact controls and chips, `--radius-md` for buttons, cards, and panels, and `--radius-lg` for the Screen 1 chat panel and message bubbles. Component CSS must use these tokens only; no raw radius values.
+- Rounded corners are used across all components. Use `--radius-sm` for compact controls and chips, `--radius-md` for buttons, cards, and panels, `--radius-lg` for larger panels and message bubbles, and `--radius-full` for circular controls. Component CSS must use these tokens only; no raw radius values.
 - No shadows. Hierarchy comes from type scale, weight, colour and spacing.
 - Focus: `outline: 2px solid var(--color-accent); outline-offset: 2px;` on every focusable element. Never remove an outline without this replacement.
-- Floating elements using `position: fixed` are allowed only at `min-width: 1280px`. Below 1280px all elements stay in normal page flow (no fixed, sticky, or absolute positioning that covers content). Reserve space with padding on the page container so floating elements never cover content at 1280, 1440, or 1920px. Header and nav stay non-sticky. Shadows remain absent.
-- No gradients, patterns or ornaments. Hover states are decorative only; no information appears only on hover. No tooltips (they do not work on touch).
+- Floating elements using `position: fixed` are allowed only at `min-width: 1280px`. Below 1280px all elements stay in normal page flow; fixed, sticky, or absolute elements must not cover content. Reserve space with padding on the page container so any floating element never covers content at 1280, 1440, or 1920px. Header and nav stay non-sticky. Screen 1 has no chat panel; from 1280px a small floating shortcut may link directly to Tư vấn. Shadows remain absent.
+- No decorative gradients, patterns or ornaments. Screen 1 may use one dark overlay gradient on the hero image to keep the text readable. Hover states are decorative only; no information appears only on hover. No tooltips (they do not work on touch).
 - Respect `prefers-reduced-motion`; no motion is required.
 
 ---
@@ -113,7 +113,7 @@ Mobile first. Write base CSS for 360 px, then `@media (min-width: 768px)` and `@
 
 | Screen | 360 px | 768 px | 1280 px |
 |---|---|---|---|
-| 1. Services and chat | One column: intro, three services, then the chat in normal flow | Services in 2 to 3 columns; chat below in normal flow | Intro and services in the page flow; chat may float fixed at bottom-right with reserved space so it never covers content |
+| 1. Services | One column: image-backed intro, three services, then the remaining full-width sections | Services in 2 to 3 columns; all sections stay full-width | Intro, services, sample work, process, and closing call to action stay in the page flow; consultation links open `/advice` |
 | 2. Advice and clash | One column in order: conversation list, chat, Booking mới form (fully visible), resource calendar and suggested times | Two columns: list and chat | Three columns: list, chat with form, calendar; the page scrolls |
 | 3. Review and pay | One column: week strip, timeline, booking card | Booking card beside the timeline | Same, with comfortable measure |
 
@@ -164,7 +164,7 @@ Only if they work; they are links or buttons at least 44px tall at 360 px. Use `
 Row height at least 48px (conversation list rows are links, at least 44px), horizontal padding `--space-5`, 1px `#D6CFC4` divider, hover `#EDE8DE`, active row `#3C1518` with cream text, Manrope 16px.
 
 ### Chat
-Chat panels use `--radius-md`; the Screen 1 panel and message bubbles use `--radius-lg`. Floating is allowed only from `min-width: 1280px`, with page-container space reserved so the panel never covers content at 1280, 1440, or 1920px. Below 1280px chat panels stay in normal flow. Customer messages use `#EDE8DE`, studio messages use `#FFFFFF` with a 1px divider border. Each message shows sender and time in caption text. The composer is a labelled input plus a Send button; where sending has no next page in PA#2 the button is disabled with a visible note.
+Screen 1 has no embedded chat panel; its consultation links and optional desktop launcher open `/advice`, where studio staff continue the conversation. Chat panels use `--radius-md`, and message bubbles use `--radius-lg`. Any floating chat is allowed only from `min-width: 1280px`, with page-container space reserved so it never covers content at 1280, 1440, or 1920px. Below 1280px chat panels stay in normal flow. Customer messages use `#EDE8DE`, studio messages use `#FFFFFF` with a 1px divider border. Each message shows sender and time in caption text. The composer is a labelled input plus a Send button; where sending has no next page in PA#2 the button is disabled with a visible note.
 
 ### Images and avatars
 No photographs of real people. Use initials in a rounded block, inline SVG illustrations, or typographic hero treatments. Any licensed image must have its source named in `PROTOTYPE.md`. Every `<img>` has `alt`; decorative SVGs use `aria-hidden="true"`. `img, svg { max-width: 100%; height: auto; }`.
@@ -210,7 +210,7 @@ Breakpoints (media queries cannot read custom properties; write the values): `76
 2. **Do** give each page one clearly most important element (the services on Screen 1, the booking form on Screen 2, the deposit action on Screen 3).
 3. **Do** use the cream background consistently; white appears only on raised surfaces (cards, inputs).
 4. **Do** use real Vietnamese placeholder data for the GradStudio story (Linh, Mai, Tuấn, GS-1024, 1.800.000đ, 540.000đ, 1.260.000đ), including at least one long name or title.
-5. **Don't** use more than two typefaces, raw `border-radius` values, shadows, gradients or decorative graphics. Use the radius tokens for all components.
+5. **Don't** use more than two typefaces, raw `border-radius` values, shadows, or decorative graphics. Gradients are limited to the Screen 1 hero contrast overlay. Use the radius tokens for all components.
 6. **Don't** set body text, labels or messages below 16 px (14 px is for captions and status chips only), or any control under 44 px tall at 360 px.
 7. **Don't** convey state by colour, hatching, opacity or hover alone.
 8. **Don't** use `!important`, `overflow-x: hidden` to hide overflow, fixed widths, `href="#"`, or any CDN resource.
