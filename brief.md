@@ -244,3 +244,661 @@ Let the two remaining routes be completed gradually. Remove the “No schedule c
 Follow AGENTS.md. Use this as the source link for the hero image: https://www.magnific.com/free-vector/twitch-banner-template-class-2023-graduation_40444019.htm#fromView=detail&position=0&uuid=f16ff0d0-78b8-4ede-83ca-673276ce8014&track=ais_hybrid
 
 Make the agreed changes for me.
+
+## Screen 2 — Các prompt dùng với Google Stitch và Codex
+
+### Google Stitch — Tạo mẫu Screen 2
+
+Ngày thực hiện trên Stitch chưa được cung cấp; prompt này được dùng trước khi chuyển bản export sang Codex.
+
+**Exact prompt:**
+
+```text
+Create a high-fidelity, production-quality responsive web application UI for GradStudio, a premium graduation photography studio management platform.
+IMPORTANT: Use the attached screenshot as the primary visual and layout reference. Recreate its composition, proportions, component positioning, visual density, spacing, and overall appearance as closely as possible.
+Use the provided design.md as the design system specification for colors, typography, spacing, borders, component states, and responsive behavior.
+Do not redesign the interface into a generic dashboard. Preserve the screenshot's distinctive editorial appearance.
+1. Design direction
+Create an elegant, minimal, editorial-style studio management dashboard.
+Visual characteristics:
+
+
+Warm ivory and cream backgrounds.
+
+Deep brown typography with restrained rust and warm brown accents.
+
+Sophisticated serif headings paired with modern sans-serif UI text.
+
+Thin subtle separators instead of heavy borders.
+
+Rounded inputs, buttons, chips, cards, and message bubbles.
+
+Flat surfaces without drop shadows.
+
+Compact yet readable information density.
+
+Calm, premium, welcoming photography-studio aesthetic.
+Use these exact design tokens:
+Colors
+
+
+Primary text: #3C1518
+
+Main background: #F5F0E8
+
+Elevated surface: #FFFFFF
+
+Secondary background: #EDE8DE
+
+Accent: #A44A3F
+
+Muted text: #6B5E55
+
+Border: #8B7E74
+
+Divider: #D6CFC4
+
+Success: #2F6B3C
+
+Warning: #9A4507
+
+Error background: #FDF6F5
+Typography
+
+
+Headings: EB Garamond, regular or medium.
+
+Body and UI: Manrope.
+
+Use elegant serif titles and understated sans-serif labels.
+
+Body text, form labels, buttons, and chat messages must remain readable at 16px minimum.
+
+Captions, timestamps, and status chips may use 14px.
+
+Preserve sufficient space for Vietnamese diacritics.
+Shape and spacing
+
+
+Radius small: 4px
+
+Radius medium: 8px
+
+Radius large: 12px
+
+Spacing scale: 4, 8, 12, 16, 24, 36, 48, 72px
+
+No shadows, decorative gradients, or heavy outlines.
+2. Overall desktop layout
+Design the main screen at 1440 × 900, with responsive support for 1280px, 768px, and 360px.
+Recreate the exact overall structure in the reference image.
+A full-width top navigation bar sits above a three-column workspace.
+Desktop column proportions:
+
+
+Left conversation sidebar: approximately 19%.
+
+Middle chat and booking workspace: approximately 56%.
+
+Right resource scheduling sidebar: approximately 25%.
+Use thin vertical dividers between columns.
+All three columns should feel like parts of one continuous application workspace rather than three separate floating cards.
+Maintain a unified warm cream background.
+The screen should be information-rich, carefully aligned, and visually balanced.
+3. Global top navigation
+Reproduce the compact horizontal header from the screenshot.
+Left:
+
+
+GradStudio wordmark using elegant EB Garamond typography.
+
+Small rounded "Studio" label beside the logo.
+Center:
+
+
+Hội thoại — active navigation item with an underline and small count badge.
+
+Booking
+
+Lịch studio
+
+Tài nguyên
+
+Nhân sự
+Right:
+
+
+Small notification bell.
+
+Circular profile avatar using initials.
+
+User name: Thảo
+
+Role: Quản lý studio
+Header requirements:
+
+
+Light cream background.
+
+Thin bottom divider.
+
+Elegant spacing.
+
+Minimalistic iconography.
+
+No prominent shadows or oversized navigation elements.
+4. Left column — Conversation inbox
+Create a conversation management sidebar matching the reference.
+At the top:
+
+
+Small uppercase eyebrow: "HỘI THOẠI"
+
+Serif heading: "Khách đang chờ"
+
+Rounded search input with a search icon.
+
+Placeholder: "Tìm khách hàng..."
+Below the search field, add three horizontally aligned filter chips:
+
+
+"Tất cả 5" — selected.
+
+"Chưa trả lời 2"
+
+"Đang tư vấn 1"
+Selected filters use a dark primary background and light text.
+Show five conversation rows.
+Conversation 1 — Active
+
+
+Avatar with initials.
+
+Nguyễn Thùy Linh
+
+Preview: "Gói tốt nghiệp có makeup còn lịch 24/10..."
+
+Time: 17:21
+
+Status: Đang tư vấn
+
+Slightly darker cream selected background.
+
+Narrow accent line on the left edge.
+Conversation 2
+
+
+Trần Minh Khoa
+
+Preview: "Chụp chân dung CV mất bao lâu ạ?"
+
+Time: 16:58
+
+Status: Chưa trả lời
+Conversation 3
+
+
+Hồ Gia Bảo · Lớp 12A3
+
+Preview: "Lớp mình chốt 24/10 nha studio"
+
+Time: Hôm qua
+
+Status: Đã chốt lịch
+Conversation 4
+
+
+Lê Ngọc Hân
+
+Preview: "Gói gia đình 4 người giá sao ạ?"
+
+Time: 2 ngày trước
+
+Status: Chưa trả lời
+Conversation 5
+
+
+Phạm Hoàng Anh
+
+Preview: "Cảm ơn studio, ảnh đẹp lắm!"
+
+Time: 3 ngày trước
+
+Status: Hoàn thành
+Each conversation row includes:
+
+
+Small circular initials avatar.
+
+Customer name.
+
+One-line message preview.
+
+Small timestamp.
+
+Clearly labeled status chip.
+
+Subtle separators and comfortable spacing.
+At the bottom of this sidebar, reproduce the small rounded screen navigation group:
+
+
+Màn 1
+
+Màn 2 — active
+
+Màn 3
+
+Đặt lại demo
+Keep this group understated and visually similar to the screenshot.
+5. Middle column — Chat and booking workspace
+This is the largest and most important area.
+A. Conversation header
+At the top of the middle workspace, show:
+
+
+Circular customer avatar.
+
+Customer name: "Nguyễn Thùy Linh"
+
+Secondary details: "linh.nguyen@email.com · 0901 234 567"
+On the right:
+
+
+Pill: "Đang hỏi về: Gói Tốt nghiệp"
+
+Status pill: "Đang tư vấn"
+Add a subtle horizontal divider below the header.
+B. Conversation messages
+Display a centered date separator: "Hôm nay".
+Customer message aligned to the left:
+"Gói tốt nghiệp có makeup còn lịch 24/10 lúc 09:00 không?"
+Show timestamp "17:20" beneath the message.
+Studio reply aligned to the right:
+"Để mình kiểm tra lịch cho bạn nhé"
+Show timestamp "17:21".
+Message appearance:
+
+
+Customer bubble: soft sand background.
+
+Studio bubble: contrasting light surface with a subtle border.
+
+Rounded corners.
+
+No shadows.
+
+Small timestamps.
+
+Natural spacing.
+Important layout requirement: Preserve the large open conversation space between the existing chat messages and the message composer, as shown in the screenshot.
+Do not fill this space with unnecessary components.
+C. Message composer
+Position the composer underneath the conversation area.
+
+
+Long pill-shaped text input.
+
+Placeholder: "Nhập tin nhắn..."
+
+Circular send icon button on the right.
+Maintain the elegant and minimal appearance of the reference.
+D. Booking creation form
+Directly underneath the chat composer, create a large integrated booking panel.
+The booking form should begin in the lower portion of the desktop screenshot, as in the reference.
+Use a slightly darker warm beige surface to separate it gently from the chat.
+At the top:
+
+
+Small uppercase eyebrow: "BOOKING MỚI"
+
+Large serif title: "Chụp ảnh tốt nghiệp"
+
+Description: "Liên kết cuộc chat với Nguyễn Thùy Linh — booking sẽ hiện trong lịch chụp của tất cả khách."
+Create a clean two-column form.
+Field 1 Label: "Khách hàng" Value: "Nguyễn Thùy Linh"
+Field 2 Label: "Loại buổi chụp" Value: "Tốt nghiệp cá nhân"
+Field 3 Label: "Gói" Value: "Gói Tốt nghiệp Premium · 2 giờ · 30 ảnh chỉnh"
+Continue the booking form below the initial viewport with:
+
+
+Ngày chụp
+
+Giờ bắt đầu
+
+Nhiếp ảnh gia
+
+Makeup
+
+Phòng chụp
+
+Ghi chú
+
+Booking summary
+
+Booking confirmation action
+Use clear visible field labels, 44px minimum interactive targets, rounded fields, and elegant spacing.
+The booking panel must appear as a natural continuation of the chat workflow, not as a modal or separate page.
+6. Right column — Resource scheduling sidebar
+This sidebar is a critical part of the reference and must be reproduced carefully.
+A. Calendar header
+At the top:
+
+
+Eyebrow: "LỊCH TÀI NGUYÊN"
+
+Large serif date heading: "Thứ Bảy, 24/10"
+
+Two circular arrow controls for previous/next day.
+Under the heading, show a compact legend:
+
+
+Đã xác nhận
+
+Yêu cầu đang xét
+
+Trùng lịch
+
+Nghỉ
+B. Resource calendar grid
+Create a compact horizontal daily resource timeline matching the screenshot.
+Time columns: 08:00, 10:00, 12:00, 14:00, 16:00, 18:00
+Resource rows:
+
+
+Makeup · Mai
+
+Thợ chụp · Tuấn
+
+Thợ chụp · Hà
+
+Phòng A
+
+Phòng B
+Calendar visual requirements:
+
+
+Very thin horizontal and vertical gridlines.
+
+Resource names aligned on the left.
+
+Time labels across the top.
+
+Muted beige reservation blocks.
+
+Small labels inside reservations.
+
+A vertical indicator at the requested time.
+
+Diagonal hatching for conflicting time slots, accompanied by a clear text label.
+
+A compact and precise timeline appearance.
+Example booking labels:
+
+
+Tốt nghiệp...
+
+Linh · yêu cầu
+
+Gia đình · Ng...
+
+Cấp đôi
+Use CSS-like flat visual patterns, not decorative illustrations.
+The calendar should be dense but still readable.
+C. Scheduling conflict notification
+Below the calendar, place a soft error-colored alert.
+Include a warning triangle icon.
+Title: "Trùng lịch tài nguyên"
+Message: "Thợ makeup Mai đã có lịch 08:00–12:00. Không thể nhận sự kiện vào 09:00."
+Use a soft pink/error background, subtle border, and rust accent text.
+D. Suggested available time slots
+Below the alert:
+
+
+Eyebrow: "GỢI Ý"
+
+Serif heading: "Giờ trống"
+Display three vertically stacked selectable suggestion cards.
+Suggestion 1 — Recommended
+
+
+Time: "14:00"
+
+Small badge: "Gần nhất"
+
+Details: "Makeup 13:00–14:00 · Mai — Chụp 14:00–16:00 · Tuấn — Phòng B"
+
+Rounded dark primary button: "Chọn 14:00"
+
+Selected/recommended visual emphasis with a subtle border.
+Suggestion 2
+
+
+Time: "15:00"
+
+Details: "Makeup 14:00–15:00 · Mai — Chụp 15:00–17:00 · Tuấn — Phòng B"
+
+Secondary button: "Chọn"
+Suggestion 3
+
+
+Date and time: "25/10 · 09:00"
+
+Details: "Ngày khác, đủ nhân sự"
+
+Secondary button: "Chọn"
+All three suggestions should resemble the screenshot, with compact spacing and discreet controls.
+7. Interaction design
+Create realistic prototype interactions:
+
+
+Clicking conversations changes the active conversation.
+
+Search filters the conversation list.
+
+Filter chips change the visible conversations.
+
+Calendar arrows change the displayed date.
+
+Suggested time cards can be selected.
+
+Selecting a suggested time updates the booking form.
+
+Booking form controls behave like real form inputs.
+
+Calendar conflicts are clearly communicated.
+
+Active, hover, focus, selected, disabled, and error states follow the design system.
+Do not invent unrelated functionality.
+8. Responsive behavior
+Desktop — 1280px and above
+
+
+Three-column layout.
+
+Conversation inbox on the left.
+
+Chat plus booking form in the center.
+
+Resource calendar and availability recommendations on the right.
+Tablet — 768px to 1279px
+
+
+Two-column conversation and chat layout.
+
+Booking form stays associated with the chat.
+
+Resource calendar and recommendations flow below.
+
+Avoid horizontal overflow except within the calendar grid itself.
+Mobile — 360px to 767px
+
+
+Single-column layout.
+
+Order: conversation inbox, chat, booking form, resource calendar, suggestions.
+
+All content remains accessible in normal page flow.
+
+Large readable form controls.
+
+No clipped text or overlapping components.
+
+No hidden essential information.
+The page itself should scroll. Avoid nested scrolling regions for the chat and sidebars.
+9. Fidelity requirements
+The attached screenshot is the main reference.
+Prioritize:
+
+
+Overall page layout and three-column proportions.
+
+Horizontal header proportions and placement.
+
+Conversation sidebar structure.
+
+Chat header and message alignment.
+
+Open negative space in the chat.
+
+Message composer placement.
+
+Booking form beginning below the composer.
+
+Compact resource calendar visualization.
+
+Conflict alert and suggested time cards.
+
+Typography, colors, borders, chips, and microspacing.
+Do not:
+
+
+Introduce a generic SaaS dashboard sidebar.
+
+Replace the three-column layout with independent dashboard cards.
+
+Add large illustrations, hero sections, charts, or statistics.
+
+Use dark mode.
+
+Use bright blue, purple, or neon colors.
+
+Use drop shadows or glassmorphism.
+
+Oversize the headings or icons.
+
+Remove the calendar conflict.
+
+Move the booking form into a modal.
+
+Replace Vietnamese text with English.
+
+Use real-person photographs; use elegant initials-based avatars instead.
+
+Reduce body text below accessibility requirements solely to fit more content.
+10. Final output
+Generate a complete, polished, visually faithful GradStudio Screen 2 — Hội thoại & Tư vấn lịch chụp web interface.
+All UI labels and sample content must be in Vietnamese.
+Match the screenshot's visual composition as closely as possible while following the provided design.md.
+The result should look like a refined professional photography studio dashboard, not a generic admin template.
+The highest priority is visual fidelity to the reference screenshot, especially the exact arrangement of the three workspace columns, the center chat-to-booking flow, and the right-side resource availability calendar.
+```
+
+### Codex — Hoàn thiện Screen 2 từ Stitch — 2026-11-11
+
+**Exact prompt:**
+
+```text
+đây là 3 file tôi đã export từ gg stitch sau khi nhờ tạo ra UI. Giờ tôi cần bạn từ đây lấy lại để hoàn thiện screen 2 sao cho đúng với các quy tắc của project
+```
+
+### Codex — Dựng lại lịch tài nguyên — 2026-11-11
+
+**Exact prompt:**
+
+```text
+bạn ko thể lấy phần lịch tài nguyên y hệt cái tôi gửi à
+```
+
+### Codex — Chỉ hiển thị FRAME 2 — 2026-11-11
+
+**Exact prompt:**
+
+```text
+Chỉnh Screen 2 (/#/advice) để chỉ thể hiện FRAME 2: sau khi Linh đã đồng ý giờ 14:00. Hiện trang đang trộn dấu hiệu trùng lịch của frame 1 với lịch đã thống nhất của frame 2.
+
+Đọc AGENTS.md và docs/design.md trước khi sửa. Giữ bố cục hiện tại, đặc biệt bảng timeline 5 hàng giống mẫu Stitch.
+
+1. Timeline tài nguyên
+- Bỏ vạch đỏ 09:00, ô cảnh báo trùng lịch màu đỏ và các ô nét đứt thể hiện yêu cầu cũ 09:00 của Linh.
+- Giữ lịch đã có của Mai 08:00–12:00 như một booking bình thường, không đánh dấu là xung đột đang xảy ra.
+- Hiển thị lịch đã thống nhất của Linh:
+  + Makeup 13:00–14:00 với Mai.
+  + Chụp 14:00–16:00 với Tuấn.
+  + Phòng B 14:00–16:00.
+- Ghi rõ “Đã thống nhất · Chờ cọc”, không thể hiện rằng lịch đã được giữ hoặc booking đã được đặt.
+- Giữ các lịch khác và vùng nghỉ trưa.
+
+2. Form Booking mới
+- Khi mở trực tiếp, ngày là 24/10/2026, giờ bắt đầu chụp là 14:00; nhân sự và phòng khớp timeline.
+- Trạng thái hội thoại là “Đã chốt lịch”; chat có lời đồng ý của Linh.
+- Nút “Tạo booking” được bật và tiếp tục dẫn đến /review.
+- Giữ giá 1.800.000đ, cọc 540.000đ, còn lại 1.260.000đ.
+
+3. Thông tin về xung đột cũ
+- Bỏ banner đỏ mang cảm giác đang có lỗi cần xử lý.
+- Vẫn giữ một ghi chú lịch sử ngắn, trung tính để đáp ứng brief:
+  “Yêu cầu 09:00 trước đó trùng lịch vì Mai bận 08:00–12:00. Linh đã đồng ý chuyển sang chụp lúc 14:00.”
+- Không xóa hoàn toàn lý do đổi giờ.
+
+4. Các giờ đề xuất
+- Khung 14:00 hiển thị “Linh đã chọn”, không còn nút “Chọn 14:00”.
+- Các khung khác chỉ là thông tin tham khảo, không có nút thay đổi lịch hoặc yêu cầu khách xác nhận lại.
+
+Không thêm frame 1, nút chuyển trạng thái, nút demo hay trang mới. Không sửa Screen 1/3, package hoặc design tokens. Dùng React và CSS thuần theo project; không commit.
+
+Chạy build, lint và kiểm tra responsive 360/768/1280px. Bảo đảm chỉ bảng lịch được cuộn ngang khi cần, nhãn đọc đầy đủ và form không bị cắt. Cập nhật AI-LOG.md dưới dạng bản nháp và báo các file đã sửa, cùng những kiểm tra chưa thực hiện.
+```
+
+### Codex — Khôi phục ô ghi chú — 2026-11-11
+
+**Exact prompt:**
+
+```text
+timeline các ô ghi chú cần được giữ giống như ban đầu tôi gửi
+```
+
+### Codex — Khớp hình thức ô và ký hiệu — 2026-11-11
+
+**Exact prompt:**
+
+```text
+tôi muốn ô ghi chú, ký hiệu ô y hệt file gốc tôi gửi
+```
+
+### Codex — Cập nhật AI-LOG và PROTOTYPE — 2026-11-11
+
+Các yêu cầu thực tế theo thứ tự:
+
+```text
+giúp tôi điền AI-log và prototype. Trước tiên tóm tắt nội dung bạn sẽ điền và gửi tôi
+```
+
+```text
+đọc file rubric và chỉ ghi những gì thật sự đc yêu cầu. AI-log chỉ ghi lại trong phiên chat này
+```
+
+```text
+AI-log thêm từ phiên chat trước hoàn thiện từ stitch
+```
+
+```text
+đây là nội dung prompt tôi đã làm với gg stitch nên đưa vô ko
+```
+
+```text
+bắt đầu ghi đi
+```
+
+```text
+Tô Lãng Nghị 24120101
+```
