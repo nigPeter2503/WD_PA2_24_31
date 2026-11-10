@@ -902,3 +902,30 @@ bắt đầu ghi đi
 ```text
 Tô Lãng Nghị 24120101
 ```
+
+## Nguyễn Đức Đạt — 24120037 — Screen 3 brief and verification — 2026-11-11
+
+Owner: Nguyễn Đức Đạt (Đạt), 24120037.
+
+This section records Đạt's approved Screen 3 design and the completed local verification. The approval message is quoted exactly.
+
+### Approved decisions and implementation record
+
+Đạt approved the design with the exact message `APPROVE SCREEN 3 BRIEF — DAT 24120037` and subsequently asked to continue. The approved layout has a full-width, read-only week calendar followed by the timeline and booking card. Mobile uses one column. From 768 px, the timeline and booking card sit side by side. The interface uses the project's existing Vietnamese booking copy and shared design tokens.
+
+The implementation replaces the Review placeholder and adds WeekCalendar, AppointmentTimeline, ReviewBookingCard and scoped review.css. The booking fixture supplies the content. The screen opens independently and from the existing booking form. The deposit button is natively disabled and the booking stays in its pending-deposit state.
+
+The source files are `src/pages/ReviewPage.jsx`, `src/components/WeekCalendar.jsx`, `src/components/AppointmentTimeline.jsx`, `src/components/ReviewBookingCard.jsx` and `src/styles/review.css`.
+
+| Local verification | Result |
+|---|---|
+| Lint and build | `npm run lint` passed. The initial build failed because Vite misread the `#` in the existing checkout path when loading assets. Building through a temporary `subst` drive alias passed and generated `dist/` in the checkout. |
+| Browser | Headless Chrome passed direct entry on all three routes at 360/768/1280/1440 px. Measured page widths matched the target widths and no page overflow occurred. The calendar marks October 24, 2026. The original 09:00 request is unavailable because Mai is busy 08:00–12:00. Makeup is 13:00–14:00 with Mai, followed by photography 14:00–16:00 with Tuấn in Room B. GS-1024 totals 1.800.000đ, with a 540.000đ deposit and 1.260.000đ remaining. |
+| Navigation and payment | Services → Advice → Review, refresh, browser Back and shared navigation passed at all four widths. The deposit button is disabled, its note is visible, and attempted activation leaves the booking pending. Keyboard focus follows the working links. |
+| Offline assets and contrast | With outside network requests blocked, the built routes loaded and attempted no outside requests. Both bundled fonts loaded. Computed Review text contrast was at least 5.12:1, including the disabled button. |
+| Date and reflow | The booking date and week stayed correct in America/Los_Angeles and Pacific/Kiritimati. Review had no horizontal overflow at 360 px with text enlarged to 200%. |
+| Visual inspection | Full-page rendered views at 360/768/1440 px were inspected. The calendar legend was corrected to display the localized month/day as 24/10. |
+| Rendered HTML | Local Nu HTML Checker 26.11.9 reported Review 0 errors / 2 redundant-list-role warnings, Services 0 errors / 0 warnings, Advice 5 errors / 10 warnings. Advice's five existing errors concern `aria-label` on generic lunch-break divs in ResourceSchedule. |
+| Remaining team evidence | Team-owned submission captures, validator evidence in `checks/`, a manual DevTools Accessibility review and submission documentation updates are pending. The existing Screen 1 missing-chat finding and the Screen 2 validation findings belong to their owners. |
+
+To reproduce the build from this checkout on Windows, map an unused drive letter to the repository with `subst`, run `npm run build` from that drive and remove the mapping afterward. A plain build from the original path still encounters the Vite path issue. The source, lockfile and Vite configuration retain the project's existing setup.

@@ -131,3 +131,35 @@ Asked for: giúp tôi điền AI-log và prototype. Trước tiên tóm tắt n�
 Kept: Các nhật ký trước phần Screen 2 và prompt cũ; các yêu cầu bổ sung của người dùng được lưu nguyên văn trong brief.md.
 Changed: Đọc rubric, rút gọn nhật ký Screen 2 theo từng task, bổ sung task Google Stitch và prompt gốc; tổ chức PROTOTYPE thành sáu mục rubric yêu cầu, dùng thông tin nhóm do người dùng cung cấp và ghi đúng trạng thái hiện tại của các màn. Đối chiếu nội dung với source và lịch sử kiểm tra; kiểm tra diff/định dạng và đối chiếu prompt Stitch với file đính kèm.
 Rejected: Bỏ mô tả lỗi thời về vạch đỏ/yêu cầu 09:00, bảng liệt kê file sửa và lịch sử QA dài trong PROTOTYPE. Không dùng tên nhóm tác giả brief làm tên nhóm thực hiện; không ghi các kiểm tra chưa chạy là đã đạt. Các mục mới vẫn là bản nháp để thành viên nhóm đọc, sửa và xác nhận.
+
+## 2026-11-11 — Screen 3 research and implementation brief — Nguyễn Đức Đạt, 24120037 (draft)
+Tool: Codex.
+Asked for: “Your task in this turn is to research the full context, analyze the existing interface, design Screen 3 and prepare a detailed implementation brief for my review.” English translation of the original request.
+Kept: The Screen 3 requirements and Fix these matrices, source audit, proposed week calendar, timeline and deposit card, and file and validation plans in SCREEN3_BRIEF_DRAFT_DAT_24120037.md. The design is awaiting Đạt’s approval.
+Changed: Compared the PA#1 proposal with the Final Project Brief, rubric and source at ea92e95. Specified a single pending-deposit state and distinguished the original 09:00 clash from the agreed schedule. Checked the October 19–25 week, payment arithmetic, proposed token contrast, Markdown structure and source links. Rewrote the draft and this entry in English at Đạt’s request. Implementation, build, browser and W3C verification are pending.
+Rejected: Excluded the PA#1 payment simulation, the simulated transition to booked, tabs and map. PA#2 requires a disabled deposit button with a visible note and a self-contained state on direct entry.
+By hand: Đạt provided the requirements, booking facts, authorized file scope, English-language preference and approval gate. His review and confirmation are pending.
+
+## 2026-11-11 — Implementing approved Screen 3 — Nguyễn Đức Đạt, 24120037 (draft)
+Tool: Codex, npm, Playwright with headless Chrome, local Nu HTML Checker 26.11.9.
+Asked for: APPROVE SCREEN 3 BRIEF — DAT 24120037. Follow-up instruction: Continue.
+Kept: The approved week calendar, timeline, booking and deposit layout, shared fixture and design tokens. Screen 3 uses the required localized product copy. It opens directly and through the existing Screen 2 booking-form handoff.
+Changed: Replaced the ReviewPage placeholder and added WeekCalendar, AppointmentTimeline, ReviewBookingCard and review.css. Lint passed. The build initially failed on the checkout path's # character; a temporary subst drive mapping allowed the same source to build successfully into dist/. Chrome checks passed all three routes at 360/768/1280/1440px, the full navigation flow, refresh, keyboard focus, disabled payment, offline local fonts and Review contrast of at least 5.12:1. Review also passed 200% text reflow at 360px and date checks in two time zones. Visual inspection caught a localized month/day hyphen, which was changed to a slash. Nu validation of rendered HTML found 0 errors and 2 redundant-role warnings on Review, 0 errors on Services, and 5 existing generic-div aria-label errors on Advice. Manual DevTools Accessibility review and team-owned submission captures and checker evidence are pending.
+Rejected: Excluded payment processing, payment simulation, booking-state transitions and additional routes in accordance with the approved scope. Recorded the existing Screen 1 missing-chat finding and Screen 2 validator errors for their owners.
+By hand: Đạt approved the design and authorized continuation. The implementation and automated checks were performed by Codex. Đạt's review of the completed UI and this log entry is pending.
+
+## 2026-11-11 — Adding the Screen 3 record to brief.md — Nguyễn Đức Đạt, 24120037 (draft)
+Tool: Codex.
+Asked for: Add the English brief and verification record to brief, and include my name (Đạt). English translation of the request.
+Kept: The approved Screen 3 brief reference, its approval message and its existing verification findings.
+Changed: Appended an English section to brief.md under Nguyễn Đức Đạt (Đạt), 24120037, linking to the full design document and reproducing its approved decisions and implementation record. Checked the source section, link, diff and byte preservation of the previous document and log content.
+Rejected: None. This task adds the documentation record requested by Đạt.
+By hand: Đạt requested the addition and the name attribution. Codex appended the record. Human review of this log entry is pending.
+
+## 2026-11-11 — Preparing Screen 3 for publication to main — Nguyễn Đức Đạt, 24120037 (draft)
+Tool: Codex and Git.
+Asked for: Push the AI log, brief and code to main, excluding the standalone English brief and the template. English translation of the request.
+Kept: The approved Screen 3 implementation and verification findings, attributed to Nguyễn Đức Đạt (Đạt), 24120037.
+Changed: Made the Screen 3 section in brief.md self-contained by replacing its standalone draft link and section-number references with the approved layout, source paths and canonical booking details. Prepared the five Screen 3 source files, brief.md and AI-LOG.md for the requested commit and push. Confirmed that origin/main matched the local baseline and retained the existing Git identity.
+Rejected: Excluded SCREEN3_BRIEF_DRAFT_DAT_24120037.md and the supplied AI-LOG template from the commit.
+By hand: Đạt explicitly authorized the commit and push to main and selected the files to publish. Publication verification is reported in the task handoff.
