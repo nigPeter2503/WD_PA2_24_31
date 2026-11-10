@@ -3,35 +3,38 @@ function AppointmentTimeline({ schedule }) {
 
   return (
     <section className='review-timeline' aria-labelledby='review-timeline-title'>
-      <h2 id='review-timeline-title'>Các mốc lịch hẹn</h2>
+      <h2 id='review-timeline-title'>Giờ đã thống nhất</h2>
+      <ol className='review-milestones' role='list'>
+        <li>
+          <div className='review-milestone'>
+            <p className='review-milestone-time time-value'>
+              <strong><time dateTime={makeup.from}>{makeup.from}</time>–<time dateTime={makeup.to}>{makeup.to}</time></strong>
+            </p>
+            <div className='review-milestone-details'>
+              <h3>Makeup</h3>
+              <p>{makeup.staff}</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div className='review-milestone'>
+            <p className='review-milestone-time time-value'>
+              <strong><time dateTime={shoot.from}>{shoot.from}</time>–<time dateTime={shoot.to}>{shoot.to}</time></strong>
+            </p>
+            <div className='review-milestone-details'>
+              <h3>Nhiếp ảnh gia</h3>
+              <p>{shoot.staff} · {shoot.room}</p>
+            </div>
+          </div>
+        </li>
+      </ol>
       <div className='review-original-request'>
-        <h3>Yêu cầu ban đầu</h3>
         <p className='review-unavailable'>
+          <span>Yêu cầu ban đầu</span>
           <s className='time-value'><time dateTime={requestedTime}>{requestedTime}</time></s>
-          <span className='status-chip status-clash'>Không khả dụng</span>
+          <span className='review-unavailable-label'>Không khả dụng</span>
         </p>
-        <p className='review-muted'>{clash.explanation}.</p>
-      </div>
-      <div className='review-agreed'>
-        <h3>Giờ đã thống nhất</h3>
-        <ol className='review-milestones' role='list'>
-          <li>
-            <div>
-              <p className='time-value'>
-                <strong><time dateTime={makeup.from}>{makeup.from}</time>–<time dateTime={makeup.to}>{makeup.to}</time></strong>
-              </p>
-              <p>Chuyên viên makeup {makeup.staff}</p>
-            </div>
-          </li>
-          <li>
-            <div>
-              <p className='time-value'>
-                <strong><time dateTime={shoot.from}>{shoot.from}</time>–<time dateTime={shoot.to}>{shoot.to}</time></strong>
-              </p>
-              <p>Nhiếp ảnh gia {shoot.staff} · {shoot.room}</p>
-            </div>
-          </li>
-        </ol>
+        <p>{clash.explanation}.</p>
       </div>
     </section>
   );

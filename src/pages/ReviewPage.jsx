@@ -17,11 +17,13 @@ function ReviewPage() {
     <div className='review-page'>
       <header className='review-intro'>
         <h1>Lịch chụp của tôi</h1>
-        <p>{people.customer.name} · Xem lại lịch đã thống nhất với studio.</p>
+        <p>{people.customer.name} · Lịch đã thống nhất, đang chờ cọc {booking.depositPercent}%.</p>
       </header>
-      <WeekCalendar date={schedule.date} />
       <div className='review-layout'>
-        <AppointmentTimeline schedule={schedule} />
+        <div className='review-appointment'>
+          <WeekCalendar date={schedule.date} />
+          <AppointmentTimeline schedule={schedule} />
+        </div>
         <ReviewBookingCard
           booking={booking}
           photoPackage={photoPackage}

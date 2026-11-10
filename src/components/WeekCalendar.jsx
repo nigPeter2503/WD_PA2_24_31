@@ -40,23 +40,27 @@ function WeekCalendar({ date }) {
         <h2 id='review-week-title'>Lịch tuần</h2>
         <p className='time-value'>{rangeStart}–{shortDate.format(sunday)}</p>
       </header>
-      <ul className='review-week' role='list'>
-        {week.map(({ weekday, day, iso }) => {
-          const hasAppointment = iso === date;
-          return (
-            <li className={hasAppointment ? 'review-day review-day-marked' : 'review-day'} key={iso}>
-              <time dateTime={iso} className='review-day-date time-value'>
-                <span className='review-sr-only'>
-                  {fullDate.format(day)}{hasAppointment && ' · Có lịch hẹn'}
-                </span>
-                <span className='review-weekday' aria-hidden='true'>{weekday}</span>
-                <span aria-hidden='true'>{day.getUTCDate()}</span>
-              </time>
-            </li>
-          );
-        })}
-      </ul>
-      <p className='review-calendar-key time-value' aria-hidden='true'>{dayAndMonth.format(appointment).replace('-', '/')} · Có lịch hẹn</p>
+      <div className='review-week-scroll' role='region' aria-label='Lịch tuần, cuộn ngang khi cần' tabIndex={0}>
+        <ul className='review-week' role='list'>
+          {week.map(({ weekday, day, iso }) => {
+            const hasAppointment = iso === date;
+            return (
+              <li className={hasAppointment ? 'review-day review-day-marked' : 'review-day'} key={iso}>
+                <time dateTime={iso} className='review-day-date time-value'>
+                  <span className='review-sr-only'>
+                    {fullDate.format(day)}{hasAppointment && ' · Có lịch hẹn'}
+                  </span>
+                  <span className='review-weekday' aria-hidden='true'>{weekday}</span>
+                  <span aria-hidden='true'>{day.getUTCDate()}</span>
+                </time>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <p className='review-calendar-key time-value' aria-hidden='true'>
+        <strong>{dayAndMonth.format(appointment).replace('-', '/')}</strong> · Có lịch hẹn
+      </p>
     </section>
   );
 }

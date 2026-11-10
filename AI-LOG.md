@@ -147,19 +147,3 @@ Kept: The approved week calendar, timeline, booking and deposit layout, shared f
 Changed: Replaced the ReviewPage placeholder and added WeekCalendar, AppointmentTimeline, ReviewBookingCard and review.css. Lint passed. The build initially failed on the checkout path's # character; a temporary subst drive mapping allowed the same source to build successfully into dist/. Chrome checks passed all three routes at 360/768/1280/1440px, the full navigation flow, refresh, keyboard focus, disabled payment, offline local fonts and Review contrast of at least 5.12:1. Review also passed 200% text reflow at 360px and date checks in two time zones. Visual inspection caught a localized month/day hyphen, which was changed to a slash. Nu validation of rendered HTML found 0 errors and 2 redundant-role warnings on Review, 0 errors on Services, and 5 existing generic-div aria-label errors on Advice. Manual DevTools Accessibility review and team-owned submission captures and checker evidence are pending.
 Rejected: Excluded payment processing, payment simulation, booking-state transitions and additional routes in accordance with the approved scope. Recorded the existing Screen 1 missing-chat finding and Screen 2 validator errors for their owners.
 By hand: Đạt approved the design and authorized continuation. The implementation and automated checks were performed by Codex. Đạt's review of the completed UI and this log entry is pending.
-
-## 2026-11-11 — Adding the Screen 3 record to brief.md — Nguyễn Đức Đạt, 24120037 (draft)
-Tool: Codex.
-Asked for: Add the English brief and verification record to brief, and include my name (Đạt). English translation of the request.
-Kept: The approved Screen 3 brief reference, its approval message and its existing verification findings.
-Changed: Appended an English section to brief.md under Nguyễn Đức Đạt (Đạt), 24120037, linking to the full design document and reproducing its approved decisions and implementation record. Checked the source section, link, diff and byte preservation of the previous document and log content.
-Rejected: None. This task adds the documentation record requested by Đạt.
-By hand: Đạt requested the addition and the name attribution. Codex appended the record. Human review of this log entry is pending.
-
-## 2026-11-11 — Preparing Screen 3 for publication to main — Nguyễn Đức Đạt, 24120037 (draft)
-Tool: Codex and Git.
-Asked for: Push the AI log, brief and code to main, excluding the standalone English brief and the template. English translation of the request.
-Kept: The approved Screen 3 implementation and verification findings, attributed to Nguyễn Đức Đạt (Đạt), 24120037.
-Changed: Made the Screen 3 section in brief.md self-contained by replacing its standalone draft link and section-number references with the approved layout, source paths and canonical booking details. Prepared the five Screen 3 source files, brief.md and AI-LOG.md for the requested commit and push. Confirmed that origin/main matched the local baseline and retained the existing Git identity.
-Rejected: Excluded SCREEN3_BRIEF_DRAFT_DAT_24120037.md and the supplied AI-LOG template from the commit.
-By hand: Đạt explicitly authorized the commit and push to main and selected the files to publish. Publication verification is reported in the task handoff.

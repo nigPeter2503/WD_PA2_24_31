@@ -9,17 +9,16 @@ function ReviewBookingCard({ booking, photoPackage, shootType, date, dateLabel }
   return (
     <section className='review-booking card' aria-labelledby='review-booking-title'>
       <header className='review-booking-heading'>
-        <h2 id='review-booking-title'>Thông tin booking</h2>
-        <p className='review-booking-id'><strong>{id}</strong></p>
+        <div className='review-booking-title'>
+          <h2 id='review-booking-title'>{photoPackage.name}</h2>
+          <p className='review-muted'>{photoPackage.durationHours} giờ chụp · {photoPackage.editedPhotos} ảnh chỉnh sửa</p>
+        </div>
         <span className='status-chip status-waiting'>Đã thống nhất lịch · {status}</span>
       </header>
       <dl className='review-booking-details'>
         <div>
-          <dt>Gói dịch vụ</dt>
-          <dd>
-            <strong>{photoPackage.name}</strong>
-            <p>{photoPackage.durationHours} giờ chụp · {photoPackage.editedPhotos} ảnh chỉnh sửa</p>
-          </dd>
+          <dt>Mã booking</dt>
+          <dd className='review-booking-id'>{id}</dd>
         </div>
         <div>
           <dt>Loại buổi chụp</dt>
@@ -44,13 +43,15 @@ function ReviewBookingCard({ booking, photoPackage, shootType, date, dateLabel }
           <dd className='price'>{formatCurrency(remaining)}</dd>
         </div>
       </dl>
-      <p className='review-muted'>Thanh toán sau buổi chụp, sau khi chọn ảnh.</p>
       <div className='review-payment'>
         <button className='button' type='button' disabled aria-describedby='review-payment-note'>
           Thanh toán cọc {depositPercent}%
         </button>
         <p className='review-muted' id='review-payment-note'>Thanh toán chưa khả dụng trong bản mẫu này.</p>
+      </div>
+      <div className='review-payment-terms'>
         <p>Studio chỉ giữ chỗ sau khi bạn thanh toán cọc thành công và hệ thống kiểm tra lại tài nguyên.</p>
+        <p className='review-muted'>Phần còn lại thanh toán sau buổi chụp, sau khi chọn ảnh.</p>
       </div>
     </section>
   );
