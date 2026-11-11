@@ -24,9 +24,9 @@ Mở địa chỉ local mà Vite thông báo, thêm các đường dẫn ở b�
 
 | Path | Màn GradStudio | Người dùng làm gì / trạng thái hiện tại | Liên kết mở đến |
 | --- | --- | --- | --- |
-| /#/ | Screen 1 — Services and chat | Khách xem ba dịch vụ và ảnh mẫu, mở tư vấn với studio. | “Tư vấn gói này” chọn chủ đề, cuộn đến chat và focus ô nhập; “Nhận tư vấn” mở /#/advice. Không tạo booking. |
-| /#/advice | Screen 2 — Advice and clash handling | Admin xem hội thoại đã chốt, tìm/lọc danh sách và tạo booking sau khi Linh đồng ý chụp 14:00 ngày 24/10/2026. | Submit “Tạo booking” mở /#/review để khách xem lịch và khoản cọc. |
-| /#/review | Screen 3 — Review appointment and pay deposit | Hiện là placeholder “Lịch chụp của tôi”; phần xem booking và thanh toán chưa triển khai. | Chưa có hành động riêng; dùng điều hướng chung. |
+| /#/ | Screen 1 — Services and chat | Khách xem ba dịch vụ và ảnh mẫu, mở tư vấn với studio. | “Tư vấn gói này” chọn chủ đề, cuộn đến chat và focus ô nhập. “Nhận tư vấn” chuyển sang vai Admin tại /#/advice và đưa focus đến tiêu đề màn. Không tạo booking. |
+| /#/advice | Screen 2 — Advice and clash handling | Admin Thảo mở cuộc tư vấn mẫu gói Tốt nghiệp đã thống nhất của Linh. Có thể tìm, lọc hội thoại và mở form “Booking mới” ngay từ đầu chat. | Submit “Tạo booking” chuyển sang vai khách tại /#/review và đưa focus đến tiêu đề màn. |
+| /#/review | Screen 3 — Review appointment and pay deposit | Khách xem ngay lịch đã thống nhất, booking GS-1024 và khoản cọc, không cần xác nhận lại giờ. | Nút “Thanh toán cọc 30%” bị vô hiệu hóa và có ghi chú. |
 
 Điều hướng chung: logo và “Dịch vụ” mở /#/; “Tư vấn” mở /#/advice; “Lịch chụp của tôi” mở /#/review. Liên kết ghi nguồn ảnh ở footer mở trang Magnific bên ngoài, không thuộc luồng ba màn.
 
@@ -35,8 +35,8 @@ Mở địa chỉ local mà Vite thông báo, thêm các đường dẫn ở b�
 - Dùng nền kem, chữ nâu, EB Garamond cho tiêu đề và Manrope cho nội dung; giao diện bo góc và không dùng shadow để giữ phong cách của mẫu tham khảo. Avatar dùng chữ viết tắt.
 - Chat là panel gọn bên phải hero từ 1280px, ở trong luồng trang dưới 1280px, và có thể thu nhỏ tại chỗ thành nút tròn. Mặc định chat mở rộng.
 - Screen 2 tham khảo mẫu do Google Stitch tạo từ prompt được lưu trong brief.md. Desktop có ba khu vực; tablet có hai cột và lịch phía dưới; mobile xếp dọc. Chat và form cuộn cùng trang, riêng bảng timeline năm hàng cuộn ngang khi cần để giữ nhãn đọc đủ.
-- Screen 2 mở sau khi Linh đồng ý: makeup 13:00–14:00 với Mai, chụp 14:00–16:00 với Tuấn tại Phòng B, giá 1.800.000đ, cọc 540.000đ, còn lại 1.260.000đ. Xung đột 09:00 được giữ dưới dạng ghi chú lịch sử. Ô Linh nét đứt ghi “Đã thống nhất · Chờ cọc”; chỉ thanh toán cọc thành công mới giữ lịch. Các giờ khác là tham khảo, không yêu cầu khách xác nhận lần nữa.
-- Theo yêu cầu khớp mẫu Stitch, riêng ô lịch và ô chú giải dùng màu từ file gốc và góc bo 2px; các thành phần khác dùng radius token của project. Các nút demo, menu không có trang đích và nhãn bị cắt trong mẫu không được sao chép.
+- Screen 2 mở sau khi Linh đồng ý makeup 13:00–14:00 với Mai và chụp 14:00–16:00 với Tuấn tại Phòng B ngày 24/10/2026. Giá 1.800.000đ, cọc 540.000đ, còn lại 1.260.000đ. Lịch sử giải thích yêu cầu 09:00 trùng lịch vì Mai bận 08:00–12:00. Thẻ 14:00 hiển thị ngày và tài nguyên đã thống nhất ở dạng chỉ đọc. Studio chỉ giữ lịch sau khi thanh toán cọc thành công và kiểm tra lại tài nguyên.
+- Nhãn giờ và ô lịch dùng chung lưới 30 phút. Trạng thái đã đặt lịch, chờ cọc và nghỉ trưa có chữ trong từng ô. Ô lịch, ô chú giải và tiêu đề hàng dùng màu token và góc bo `--radius-sm`.
 
 Nguồn hình ảnh:
 
@@ -45,10 +45,10 @@ Nguồn hình ảnh:
 
 ## 5. Not wired yet
 
-- Gửi là nút chỉ có icon mũi tên và bị vô hiệu hóa (sending has no next page in PA#2).
+- Screen 1 dùng nút gửi có icon mũi tên. Screen 2 dùng nút chữ “Gửi”. Cả hai nút bị vô hiệu hóa và có ghi chú “Gửi tin nhắn chưa khả dụng trong bản mẫu.”
 - Các hội thoại khác chỉ để tham khảo, chưa mở chat riêng. Tìm kiếm và lọc trạng thái chạy cục bộ.
-- Form booking chỉ điều hướng sang /#/review; chưa tạo dữ liệu booking trên server. Các trường được đọc từ dữ liệu mẫu để giữ đúng lịch đã thống nhất.
-- Screen 3 chưa có thông tin booking hay nút thanh toán. Chưa tích hợp cổng thanh toán, gửi xác nhận hoặc nhắc lịch.
+- Form “Booking mới” hiển thị dữ liệu mẫu đã thống nhất ở các trường chỉ đọc. Submit mở booking mẫu GS-1024 trên /#/review.
+- Review hiển thị “Thanh toán chưa khả dụng trong bản mẫu này.” bên cạnh nút cọc bị vô hiệu hóa.
 
 ## 6. CSS
 

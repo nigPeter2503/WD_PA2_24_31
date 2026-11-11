@@ -4,7 +4,7 @@ function AppointmentTimeline({ schedule }) {
   return (
     <section className='review-timeline' aria-labelledby='review-timeline-title'>
       <h2 id='review-timeline-title'>Giờ đã thống nhất</h2>
-      <ol className='review-milestones' role='list'>
+      <ol className='review-milestones'>
         <li>
           <div className='review-milestone'>
             <p className='review-milestone-time time-value'>

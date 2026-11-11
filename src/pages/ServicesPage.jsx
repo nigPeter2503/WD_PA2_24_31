@@ -1,15 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ServiceChat from '../components/ServiceChat.jsx';
 import { gradStudio } from '../data/gradStudio.js';
 
 function ServicesPage() {
-  const servicesRef = useRef(null);
-  const chatRef = useRef(null);
+  const servicesTitleRef = useRef(null);
   const inputRef = useRef(null);
   const launcherRef = useRef(null);
-  const lastExpandedStateRef = useRef(true);
   const [isChatExpanded, setIsChatExpanded] = useState(true);
-  const [chatOpenRequest, setChatOpenRequest] = useState(0);
+  const [chatFocusRequest, setChatFocusRequest] = useState(0);
   const [selectedService, setSelectedService] = useState(() => (
     gradStudio.services.find((service) => service.id === 'graduation') ?? gradStudio.services[0]
   ));
@@ -18,54 +16,42 @@ function ServicesPage() {
     document.title = 'Dịch vụ chụp ảnh | GradStudio';
   }, []);
 
-  useEffect(() => {
-    if (lastExpandedStateRef.current === isChatExpanded) {
+  useLayoutEffect(() => {
+    if (chatFocusRequest === 0) {
       return;
     }
 
-    lastExpandedStateRef.current = isChatExpanded;
-    if (isChatExpanded) {
-      inputRef.current?.focus({ preventScroll: true });
-    } else {
-      launcherRef.current?.focus({ preventScroll: true });
-    }
-  }, [isChatExpanded]);
-
-  useEffect(() => {
-    if (chatOpenRequest === 0) {
-      return;
-    }
-
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    chatRef.current?.scrollIntoView({
-      behavior: isReducedMotion ? 'auto' : 'smooth',
-      block: 'start',
+    const target = isChatExpanded ? inputRef.current : launcherRef.current;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({
+      behavior: 'instant',
+      block: isChatExpanded ? 'center' : 'nearest',
     });
-    if (isChatExpanded) {
-      inputRef.current?.focus({ preventScroll: true });
-    }
-  }, [chatOpenRequest, isChatExpanded]);
+  }, [chatFocusRequest, isChatExpanded]);
 
   const handleScrollToServices = () => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    servicesRef.current?.scrollIntoView({
+    const title = servicesTitleRef.current;
+    title.focus({ preventScroll: true });
+    title.scrollIntoView({
       behavior: isReducedMotion ? 'auto' : 'smooth',
       block: 'start',
     });
   };
 
-  const handleOpenChat = (service = selectedService) => {
-    setSelectedService(service);
+  const handleOpenChat = () => {
     setIsChatExpanded(true);
-    setChatOpenRequest((request) => request + 1);
+    setChatFocusRequest((request) => request + 1);
+  };
+
+  const handleSelectService = (service) => {
+    setSelectedService(service);
+    handleOpenChat();
   };
 
   const handleMinimizeChat = () => {
     setIsChatExpanded(false);
-  };
-
-  const handleReopenChat = () => {
-    setIsChatExpanded(true);
+    setChatFocusRequest((request) => request + 1);
   };
 
   return (
@@ -88,12 +74,11 @@ function ServicesPage() {
             </ul>
           </div>
           <ServiceChat
-            chatRef={chatRef}
             inputRef={inputRef}
             isExpanded={isChatExpanded}
             launcherRef={launcherRef}
             onMinimize={handleMinimizeChat}
-            onReopen={handleReopenChat}
+            onReopen={handleOpenChat}
             selectedService={selectedService}
           />
         </div>
@@ -105,10 +90,10 @@ function ServicesPage() {
         </button>
       </section>
 
-      <section aria-labelledby='services-title' className='services-section' id='services' ref={servicesRef}>
+      <section aria-labelledby='services-title' className='services-section' id='services'>
         <div className='section-heading services-heading'>
           <p className='eyebrow'>Dịch vụ GradStudio</p>
-          <h2 id='services-title'>Chọn câu chuyện bạn muốn lưu lại</h2>
+          <h2 id='services-title' ref={servicesTitleRef} tabIndex={-1}>Chọn câu chuyện bạn muốn lưu lại</h2>
         </div>
         <div className='service-grid'>
           {gradStudio.services.map((service, index) => (
@@ -118,11 +103,11 @@ function ServicesPage() {
               </div>
               <h3>{service.name}</h3>
               <p>{service.description}</p>
-              <p className='service-price'>{service.price}</p>
+              <p className='service-price'>từ {service.price}</p>
               <button
                 aria-pressed={selectedService.id === service.id}
                 className='button button-secondary service-select'
-                onClick={() => handleOpenChat(service)}
+                onClick={() => handleSelectService(service)}
                 type='button'
               >
                 Tư vấn gói này

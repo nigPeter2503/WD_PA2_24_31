@@ -994,3 +994,47 @@ DEFINITION OF DONE (report each step; say which you did not run)
 2. Run and show: rg -n 'href=.*#|position:\s*(fixed|sticky)|!important|overflow-x' src and rg -n '>\s*Gửi\s*<' src.
 3. If a browser tool is available, on /#/ at 360 and 1440x900: scrollWidth > clientWidth is false and the elements-past-clientWidth list is []. Click each of the three "Tư vấn gói này" buttons and report: chip text, which card has aria-pressed="true", whether #chat is inside the viewport afterwards, whether document.activeElement is the message input, and whether location.hash is unchanged. Collapse the chat, click a card button, and report that the chat expands. Report the Gửi button's width and height. If no browser is available, say so and do not claim any measurement.
 4. FINAL CHANGE REPORT: every file changed and what changed in each, including anything this prompt did not ask for. Revert anything outside the scope above and say what you reverted.
+
+## 2026-11-11 — Sửa Screen 2
+
+**Exact prompt:**
+
+Sửa toàn bộ finding thuộc Screen 2 — Advice and clash handling tại `/#/advice` của GradStudio PA#2. Báo cáo bằng tiếng Việt. Trước khi sửa, đọc `AGENTS.md`, hai PDF trong `docs/`, `docs/design.md`, `PROTOTYPE.md` và các mục Screen 2 trong `brief.md`, `AI-LOG.md`. Kiểm tra HEAD hiện tại và giữ các thay đổi có sẵn trong working tree.
+
+Phạm vi gồm mã và dữ liệu Screen 2, hai điểm chuyển route đi vào và đi ra từ Advice, cùng các dòng tài liệu mô tả Screen 2 và bàn giao sang Review. Giữ nguyên nội dung, bố cục và tính năng của Screen 1 và Screen 3. Nếu cần sửa router hoặc layout dùng chung để xử lý focus, giới hạn hành vi ở `/#/ → /#/advice` và `/#/advice → /#/review`. Không thêm dependency, màn, backend, điều khiển demo hoặc bước xác nhận giờ. Không commit. Để thành viên nhóm tự lưu ảnh và kết quả chính thức trong `screenshots/` và `checks/`.
+
+1. Sửa dữ liệu gợi ý lịch. Ngày 24/10/2026, ca chụp 15:00–17:00 ở Phòng A trùng lịch Cặp đôi 14:00–16:00. Tuấn cũng trùng ca Linh 14:00–16:00 và ca CV 16:30–17:30. Bỏ gợi ý sai hoặc thay bằng một ca mẫu đã kiểm tra đủ ngày, Mai, nhiếp ảnh gia, phòng và thời lượng 1 giờ makeup + 2 giờ chụp. Với ca 25/10 lúc 09:00, cung cấp dữ liệu mẫu đủ để chứng minh cả người và phòng rảnh, hoặc bỏ khỏi danh sách “Gợi ý giờ trống”. Hiển thị ngày trên mỗi thẻ. Các phương án tham khảo ở dạng chỉ đọc. Giữ ca Linh đã đồng ý lúc 14:00.
+
+2. Căn nhãn trục giờ và biên ô lịch trên cùng một lưới thời gian. Giữ nhãn đầu/cuối đọc đủ. Hiển thị bằng chữ hoặc tên truy cập thích hợp để nhận biết từng ca đã đặt, ca Linh chờ cọc và giờ nghỉ trưa. Giữ ghi chú lịch sử 09:00 vì Mai bận 08:00–12:00. Trạng thái phải hiểu được khi ẩn màu và họa tiết. Giữ bảng có header hàng/cột, vùng cuộn có tên truy cập, dùng được bằng phím và chỉ cuộn ngang khi cần.
+
+3. Sửa 5 lỗi Nu từ `aria-label` trên `div` generic của ô nghỉ trưa. Giữ thông tin “Nghỉ trưa 12:00–13:00” bằng nội dung có ngữ nghĩa. Xử lý 10 cảnh báo `article` thiếu heading bằng markup phù hợp với các mục hội thoại và tin nhắn. Kiểm tra lại landmarks, một `h1`, thứ tự heading, label gắn đúng trường, tên truy cập, tab order và focus. Giữ `Gửi` disabled có ghi chú hiển thị.
+
+4. Sửa bàn giao qua Advice. Khi kích hoạt `Nhận tư vấn` hoặc submit `Tạo booking`, tiêu đề màn đích phải vào viewport và nhận focus sau khi React render. Giữ `Nhận tư vấn` là router link, `Tạo booking` là nút submit và giữ lời dẫn chuyển vai. Tại đầu Advice, nói rõ Admin đang mở cuộc tư vấn mẫu Tốt nghiệp đã thống nhất của Linh, kể cả khi khách vừa chọn xem gói khác ở Screen 1. Khi sang Review, khách xem lịch và khoản cọc ngay, không cần xác nhận giờ lần nữa.
+
+5. Làm form `Booking mới` dễ tới từ đầu chat. Ưu tiên một liên kết nội trang rõ nghĩa, có focus thấy được và cao tối thiểu 44 px ở 360 px. Giữ toàn bộ form ngay dưới chat, cuộn cùng trang. Dùng radius và màu token cho các ô lịch, chú giải và tiêu đề hàng để xử lý sai lệch 2 px và màu ngoài token. Giữ bố cục Stitch làm tham chiếu cho thứ tự ba khu vực. Tuân thủ `AGENTS.md` và rubric về nội dung, spacing, typography, contrast và responsive.
+
+6. Đồng bộ các dòng liên quan trong `PROTOTYPE.md`. Mô tả đúng Advice, `Gửi` bằng chữ có ghi chú, form mẫu và điểm bàn giao sang Review đã hiển thị booking cùng nút cọc disabled. Cập nhật ghi chú về màu và radius theo CSS sau sửa. Giữ nguyên prompt lịch sử trong `brief.md`. Nếu bổ sung bản ghi sửa Screen 2 trong `AI-LOG.md`, dùng prompt thực tế và kết quả đã chạy. Để nhóm xác nhận những mục lịch sử thiếu căn cứ.
+
+Nghiệm thu
+- Advice mở trực tiếp và reload được. Hiển thị Admin Thảo, Linh đã đồng ý, `Đã chốt lịch`, `Chờ cọc 30%`, GS-1024, Gói Tốt nghiệp Premium, 2 giờ, 30 ảnh chỉnh sửa, 1.800.000đ, cọc 540.000đ, còn 1.260.000đ. Ngày 24/10/2026, makeup 13:00–14:00 với Mai, chụp 14:00–16:00 với Tuấn tại Phòng B. Chỉ giữ lịch sau khi cọc thành công và kiểm tra lại tài nguyên.
+- Tìm có dấu, không dấu và chữ `đ`, bộ lọc, trạng thái rỗng, `Gửi` disabled và luồng bàn phím `Nhận tư vấn → Tạo booking → Review` đều hoạt động.
+- Chạy `npm run build`, `npm run lint` và `npx vite preview`. Kiểm tra bản build với JavaScript bật, chỉ cho phép localhost. Tại 360/768/1280 px, ghi `clientWidth`, `scrollWidth`, phần tử vượt mép ngoài wrapper lịch và số cột. Kiểm tra đọc đủ chat/form, nhãn lịch, cuộn lịch bằng bàn phím, nút và link độc lập cao ít nhất 44 px ở 360 px, chữ nội dung từ 16 px và contrast từ 4.5:1.
+- Kiểm tra DOM và cây trợ năng Chrome. Chạy Nu trên `<!DOCTYPE html>` cộng `document.documentElement.outerHTML` của Advice. Mục tiêu 0 errors. Ghi riêng warnings còn lại và cách tái hiện nếu có.
+
+Khi xong, liệt kê từng finding đã xử lý, file và dòng liên quan, kết quả chạy mới và mọi phần chưa xác minh. Kiểm tra `git diff` để bảo đảm thay đổi nằm trong phạm vi Screen 2.
+
+**Kết quả triển khai**
+
+Giữ ca Linh đã thống nhất ngày 24/10/2026: makeup 13:00–14:00 với Mai và chụp 14:00–16:00 với Tuấn tại Phòng B. Hai phương án thiếu căn cứ đã được bỏ. Timeline dùng lưới 30 phút và ghi trạng thái bằng chữ. Ghi chú lịch sử vẫn giải thích vì sao yêu cầu 09:00 trùng lịch. Form “Booking mới” có thể mở từ đầu chat. Luồng “Nhận tư vấn” → “Tạo booking” chuyển focus tới tiêu đề của màn đích.
+
+## 2026-11-11 — Hoàn thiện dự án GradStudio PA#2
+
+**Exact prompt:**
+
+Tạo commit cho việc fix screen 2 của tôi và 1 commit là tôi đã hoàn thiện dự án. Sau đó giúp tôi hoàn thiện AI-log, brief. Với 2 entry là fix screen 2 và hoàn thiện dự án. Không thêm bất cứ entry lặt vặt vào.
+
+**Kết quả triển khai**
+
+- Screen 1 hoàn thiện focus khi xem dịch vụ, chọn gói, thu nhỏ và mở lại chat. Nút gửi bị vô hiệu hóa và có ghi chú. Liên kết “Nhận tư vấn” giải thích nhân viên studio sẽ mở cuộc tư vấn mẫu của Linh.
+- Screen 2 hiển thị lịch đã thống nhất và mở booking GS-1024 trên Screen 3. Khách xem lịch và khoản cọc 540.000đ ngay khi vào Screen 3. Nút cọc bị vô hiệu hóa trong prototype.
+- Bản build và lint chạy thành công. Bộ minh chứng đã có gồm chín ảnh của ba màn ở 360, 768 và 1280 px và ba ảnh Nu HTML Checker báo 0 lỗi, 0 cảnh báo cho bản build.

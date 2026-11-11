@@ -273,7 +273,7 @@ a {
   padding: calc(var(--space-7) + var(--space-4)) var(--space-4) var(--space-4);
   color: var(--color-surface);
   background-color: var(--color-primary);
-  background-image: linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 75%, transparent) 0%, color-mix(in srgb, var(--color-primary) 64%, transparent) 96%, transparent 100%), url('../assets/Background_final.jpg');
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 80%, transparent), color-mix(in srgb, var(--color-primary) 72%, transparent)), url('../assets/Background_final.jpg');
   background-position: center;
   background-size: cover;
   overflow-wrap: anywhere;
@@ -314,12 +314,12 @@ a {
   font-size: var(--text-body-lg);
 }
 
-.hero-section .button-primary {
+.hero-actions .button-primary {
   background: var(--color-warning);
   color: var(--color-surface-raised);
 }
 
-.hero-section .button-secondary {
+.hero-actions .button-secondary {
   border-color: var(--color-surface);
   color: var(--color-surface);
 }
@@ -343,13 +343,18 @@ a {
   background: transparent;
   color: var(--color-surface);
   font-family: var(--font-body);
-  font-size: var(--text-caption);
+  font-size: var(--text-ui);
   cursor: pointer;
 }
 
 .scroll-cue svg {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+.hero-actions :focus-visible,
+.scroll-cue:focus-visible {
+  outline-color: var(--color-surface);
 }
 
 .hero-actions,
@@ -377,8 +382,8 @@ a {
   border-left: 2px solid var(--color-accent);
 }
 
-.services-section {
-  scroll-margin-top: var(--space-4);
+.services-heading h2 {
+  scroll-margin-block-start: var(--space-8);
 }
 
 .service-grid {
@@ -788,7 +793,6 @@ select:disabled {
 
   .hero-section {
     padding-inline: var(--space-6);
-    background-image: linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 75%, transparent) 0%, color-mix(in srgb, var(--color-primary) 64%, transparent) 78%, transparent 100%), url('../assets/Background_final.jpg');
   }
 
   .site-main-home .home-page > :not(.hero-section) {
@@ -825,6 +829,10 @@ select:disabled {
     color: var(--color-surface);
   }
 
+  .home-shell .site-header :focus-visible {
+    outline-color: var(--color-surface);
+  }
+
   .site-main-home {
     max-width: none;
     padding: 0;
@@ -835,7 +843,6 @@ select:disabled {
     padding-top: calc(var(--space-8) * 2);
     padding-right: max(var(--space-6), calc((100% - 1680px) / 2));
     padding-left: max(var(--space-6), calc((100% - 1680px) / 2));
-    background-image: linear-gradient(90deg, color-mix(in srgb, var(--color-primary) 75%, transparent) 0%, color-mix(in srgb, var(--color-primary) 64%, transparent) 65%, transparent 100%), url('../assets/Background_final.jpg');
   }
 
   .site-main-home .home-page > :not(.hero-section) {

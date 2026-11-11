@@ -41,7 +41,7 @@ export const gradStudio = {
     { id: 'ask', title: 'Hỏi tư vấn', description: 'Chia sẻ ý tưởng, gói chụp và mong muốn của bạn.' },
     { id: 'check', title: 'Studio kiểm tra lịch', description: 'Studio rà soát lịch nhân sự và không gian chụp.' },
     { id: 'agree', title: 'Thống nhất giờ', description: 'Cùng trao đổi và chọn khung giờ phù hợp.' },
-    { id: 'deposit', title: 'Đặt cọc 30% để giữ lịch', description: 'Lịch được giữ sau khi khoản cọc được thanh toán thành công.' },
+    { id: 'deposit', title: 'Đặt cọc 30%', description: 'Studio chỉ giữ lịch sau khi thanh toán cọc thành công và hệ thống kiểm tra lại tài nguyên.' },
   ],
   package: {
     name: 'Gói Tốt nghiệp Premium',

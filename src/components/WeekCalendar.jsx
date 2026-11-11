@@ -41,7 +41,7 @@ function WeekCalendar({ date }) {
         <p className='time-value'>{rangeStart}–{shortDate.format(sunday)}</p>
       </header>
       <div className='review-week-scroll' role='region' aria-label='Lịch tuần, cuộn ngang khi cần' tabIndex={0}>
-        <ul className='review-week' role='list'>
+        <ul className='review-week'>
           {week.map(({ weekday, day, iso }) => {
             const hasAppointment = iso === date;
             return (
