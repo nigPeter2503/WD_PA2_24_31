@@ -3,7 +3,7 @@ import { adviceWorkspace } from '../data/adviceWorkspace.js';
 
 const formatCurrency = (amount) => `${new Intl.NumberFormat('vi-VN').format(amount)}đ`;
 
-function AdviceBookingForm({ booking, photoPackage, schedule, shootType }) {
+function AdviceBookingForm({ booking, photoPackage, schedule, shootType, titleRef }) {
   const navigate = useNavigate();
 
   const handleCreateBooking = (event) => {
@@ -17,7 +17,7 @@ function AdviceBookingForm({ booking, photoPackage, schedule, shootType }) {
         <header className='booking-header'>
           <div>
             <p className='eyebrow'>Booking mới · {booking.id}</p>
-            <h2 id='booking-form-title'>Chụp ảnh tốt nghiệp</h2>
+            <h2 id='booking-form-title' ref={titleRef} tabIndex={-1}>Chụp ảnh tốt nghiệp</h2>
           </div>
           <span className='status-chip status-confirmed'>Linh đã đồng ý</span>
         </header>
@@ -28,11 +28,11 @@ function AdviceBookingForm({ booking, photoPackage, schedule, shootType }) {
           <p className='schedule-status'>Đã thống nhất · Chờ cọc</p>
         </div>
         <div className='booking-fields'>
-          <div className='field-group'>
+          <div className='field-group field-wide'>
             <label htmlFor='booking-customer'>Khách hàng</label>
             <input id='booking-customer' name='customer' value={adviceWorkspace.customerName} readOnly />
           </div>
-          <div className='field-group'>
+          <div className='field-group field-wide'>
             <label htmlFor='booking-type'>Loại buổi chụp</label>
             <input id='booking-type' name='type' value={shootType} readOnly />
           </div>
@@ -82,7 +82,7 @@ function AdviceBookingForm({ booking, photoPackage, schedule, shootType }) {
           <button className='button button-primary' type='submit' aria-describedby='booking-next-note'>Tạo booking</button>
           <p className='form-note' id='booking-next-note'>Tiếp theo: khách hàng xem lịch chụp và khoản cọc.</p>
         </div>
-        <p className='deposit-notice'>Lịch chỉ được giữ sau khi thanh toán cọc thành công.</p>
+        <p className='deposit-notice'>Studio chỉ giữ lịch sau khi thanh toán cọc thành công và kiểm tra lại nhân sự, phòng chụp.</p>
       </form>
     </div>
   );

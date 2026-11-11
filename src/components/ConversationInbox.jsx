@@ -56,8 +56,8 @@ function ConversationInbox({ conversations, selectedId }) {
         {visibleConversations.map((conversation) => {
           const isSelected = conversation.id === selectedId;
           return (
-            <li key={conversation.id}>
-              <article className={`conversation-row${isSelected ? ' conversation-row-selected' : ''}`} aria-current={isSelected ? 'true' : undefined}>
+            <li key={conversation.id} aria-current={isSelected ? 'true' : undefined}>
+              <div className={`conversation-row${isSelected ? ' conversation-row-selected' : ''}`}>
                 <span className='conversation-avatar' aria-hidden='true'>{isSelected ? adviceWorkspace.customerInitials : conversation.initials}</span>
                 <div className='conversation-copy'>
                   <strong>{isSelected ? adviceWorkspace.customerName : conversation.name}</strong>
@@ -65,7 +65,7 @@ function ConversationInbox({ conversations, selectedId }) {
                   <span className={`status-chip ${statusClassNames[conversation.status]}`}>{conversation.status}</span>
                   {isSelected && <span className='conversation-current'>Đang mở</span>}
                 </div>
-              </article>
+              </div>
             </li>
           );
         })}

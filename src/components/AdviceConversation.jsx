@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { adviceWorkspace } from '../data/adviceWorkspace.js';
 
 function AdviceConversation({ customer, admin, status }) {
@@ -11,6 +12,7 @@ function AdviceConversation({ customer, admin, status }) {
         </div>
         <span className='status-chip status-confirmed'>{status}</span>
       </header>
+      <Link className='button button-primary booking-jump' to='?section=booking'>Đến form Booking mới</Link>
       <p className='chat-date'>Trao đổi trước buổi chụp</p>
       <ol className='advice-message-list'>
         {adviceWorkspace.messages.map((message) => {
@@ -18,13 +20,13 @@ function AdviceConversation({ customer, admin, status }) {
           const sender = isCustomer ? customer.name : `Studio ${admin.name}`;
           return (
             <li className={`advice-message${isCustomer ? ' advice-message-customer' : ''}`} key={message.id}>
-              <article className='advice-message-bubble'>
-                <header className='message-meta'>
+              <div className='advice-message-bubble'>
+                <p className='message-meta'>
                   <strong>{sender}</strong>
                   <time>{message.time}</time>
-                </header>
+                </p>
                 <p>{message.text}</p>
-              </article>
+              </div>
             </li>
           );
         })}

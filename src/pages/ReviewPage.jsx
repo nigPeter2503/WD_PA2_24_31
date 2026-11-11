@@ -16,7 +16,7 @@ function ReviewPage() {
   return (
     <div className='review-page'>
       <header className='review-intro'>
-        <h1>Lịch chụp của tôi</h1>
+        <h1 tabIndex={-1}>Lịch chụp của tôi</h1>
         <p>{people.customer.name} · Lịch đã thống nhất, đang chờ cọc {booking.depositPercent}%.</p>
       </header>
       <div className='review-layout'>

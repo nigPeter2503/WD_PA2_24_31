@@ -95,9 +95,4 @@ export const gradStudio = {
     { id: 'GS-1014', name: 'Trần Gia Hân', initials: 'H', title: 'Chân dung đôi', status: conversationStatuses.complete },
     { id: 'GS-1009', name: 'Võ Đức Anh', initials: 'A', title: 'Gia đình', status: conversationStatuses.advising },
   ],
-  suggestedTimeSlots: [
-    { id: 'slot-1300', makeup: '13:00–14:00', shoot: '14:00–16:00', makeupArtist: 'Mai', photographer: 'Tuấn', room: 'Phòng B' },
-    { id: 'slot-1500', makeup: '14:00–15:00', shoot: '15:00–17:00', makeupArtist: 'Mai', photographer: 'Tuấn', room: 'Phòng A' },
-    { id: 'slot-0900-next', makeup: '08:00–09:00', shoot: '09:00–11:00', makeupArtist: 'Mai', photographer: 'Tuấn', room: 'Phòng B', dateLabel: '25/10/2026' },
-  ],
 }
