@@ -1027,7 +1027,7 @@ Khi xong, liệt kê từng finding đã xử lý, file và dòng liên quan, k�
 
 Giữ ca Linh đã thống nhất ngày 24/10/2026: makeup 13:00–14:00 với Mai và chụp 14:00–16:00 với Tuấn tại Phòng B. Hai phương án thiếu căn cứ đã được bỏ. Timeline dùng lưới 30 phút và ghi trạng thái bằng chữ. Ghi chú lịch sử vẫn giải thích vì sao yêu cầu 09:00 trùng lịch. Form “Booking mới” có thể mở từ đầu chat. Luồng “Nhận tư vấn” → “Tạo booking” chuyển focus tới tiêu đề của màn đích.
 
-## 2026-11-11 — Hoàn thiện dự án GradStudio PA#2
+## Tô Lãng Nghị — 24120101 — Hoàn thiện dự án GradStudio PA#2 — 2026-11-11
 
 **Phạm vi hoàn thiện**
 
