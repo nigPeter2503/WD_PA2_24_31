@@ -1,13 +1,50 @@
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import ServiceChat from '../components/ServiceChat.jsx';
 import { gradStudio } from '../data/gradStudio.js';
 
 function ServicesPage() {
   const servicesRef = useRef(null);
+  const chatRef = useRef(null);
+  const inputRef = useRef(null);
+  const launcherRef = useRef(null);
+  const lastExpandedStateRef = useRef(true);
+  const [isChatExpanded, setIsChatExpanded] = useState(true);
+  const [chatOpenRequest, setChatOpenRequest] = useState(0);
+  const [selectedService, setSelectedService] = useState(() => (
+    gradStudio.services.find((service) => service.id === 'graduation') ?? gradStudio.services[0]
+  ));
 
   useEffect(() => {
     document.title = 'Dịch vụ chụp ảnh | GradStudio';
   }, []);
+
+  useEffect(() => {
+    if (lastExpandedStateRef.current === isChatExpanded) {
+      return;
+    }
+
+    lastExpandedStateRef.current = isChatExpanded;
+    if (isChatExpanded) {
+      inputRef.current?.focus({ preventScroll: true });
+    } else {
+      launcherRef.current?.focus({ preventScroll: true });
+    }
+  }, [isChatExpanded]);
+
+  useEffect(() => {
+    if (chatOpenRequest === 0) {
+      return;
+    }
+
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    chatRef.current?.scrollIntoView({
+      behavior: isReducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    });
+    if (isChatExpanded) {
+      inputRef.current?.focus({ preventScroll: true });
+    }
+  }, [chatOpenRequest, isChatExpanded]);
 
   const handleScrollToServices = () => {
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -17,23 +54,48 @@ function ServicesPage() {
     });
   };
 
+  const handleOpenChat = (service = selectedService) => {
+    setSelectedService(service);
+    setIsChatExpanded(true);
+    setChatOpenRequest((request) => request + 1);
+  };
+
+  const handleMinimizeChat = () => {
+    setIsChatExpanded(false);
+  };
+
+  const handleReopenChat = () => {
+    setIsChatExpanded(true);
+  };
+
   return (
     <div className='home-page'>
       <section className='hero-section' aria-labelledby='home-title'>
-        <div className='hero-copy'>
-          <p className='eyebrow'>Studio ảnh tốt nghiệp &amp; chân dung</p>
-          <h1 id='home-title'><span>Lưu lại ngày</span><em>ra trường</em><span>theo cách của bạn</span></h1>
-          <p className='hero-description'>Kỷ yếu lớp, tốt nghiệp, chân dung CV – tư vấn ngay trên web và xem lịch chụp phù hợp.</p>
-          <div className='hero-actions'>
-            <button className='button button-primary' onClick={handleScrollToServices} type='button'>Xem gói chụp</button>
-            <Link className='button button-secondary' to='/advice'>Chat với studio</Link>
+        <div className='hero-row'>
+          <div className='hero-copy'>
+            <p className='eyebrow'>Studio ảnh tốt nghiệp &amp; chân dung</p>
+            <h1 id='home-title'><span>Lưu lại ngày</span><em>ra trường</em><span>theo cách của bạn</span></h1>
+            <p className='hero-description'>Kỷ yếu lớp, tốt nghiệp, chân dung CV – tư vấn ngay trên web và xem lịch chụp phù hợp.</p>
+            <div className='hero-actions'>
+              <button className='button button-primary' onClick={handleScrollToServices} type='button'>Xem gói chụp</button>
+              <button className='button button-secondary' onClick={handleOpenChat} type='button'>Chat với studio</button>
+            </div>
+            <p className='role-note'>Nhân viên studio sẽ tiếp tục tư vấn tại trang Tư vấn.</p>
+            <ul aria-label='Thông tin dịch vụ' className='value-strip'>
+              <li>Tư vấn trực tiếp trên web</li>
+              <li>Chọn gói rõ ràng</li>
+              <li>Xem lịch chụp của bạn</li>
+            </ul>
           </div>
-          <p className='role-note'>Nhân viên studio sẽ tiếp tục tư vấn tại trang Tư vấn.</p>
-          <ul aria-label='Thông tin dịch vụ' className='value-strip'>
-            <li>Tư vấn trực tiếp trên web</li>
-            <li>Chọn gói rõ ràng</li>
-            <li>Xem lịch chụp của bạn</li>
-          </ul>
+          <ServiceChat
+            chatRef={chatRef}
+            inputRef={inputRef}
+            isExpanded={isChatExpanded}
+            launcherRef={launcherRef}
+            onMinimize={handleMinimizeChat}
+            onReopen={handleReopenChat}
+            selectedService={selectedService}
+          />
         </div>
         <button className='scroll-cue' onClick={handleScrollToServices} type='button'>
           <span>Cuộn xuống</span>
@@ -50,20 +112,21 @@ function ServicesPage() {
         </div>
         <div className='service-grid'>
           {gradStudio.services.map((service, index) => (
-            <article className='service-card card' key={service.id}>
+            <article className={`service-card card${selectedService.id === service.id ? ' service-card-selected' : ''}`} key={service.id}>
               <div aria-hidden='true' className={`service-mark service-mark-${service.id}`}>
                 {['KL', 'TN', 'CV'][index]}
               </div>
               <h3>{service.name}</h3>
               <p>{service.description}</p>
               <p className='service-price'>{service.price}</p>
-              <Link
-                aria-label={`Nhân viên studio: tư vấn gói ${service.name}`}
+              <button
+                aria-pressed={selectedService.id === service.id}
                 className='button button-secondary service-select'
-                to='/advice'
+                onClick={() => handleOpenChat(service)}
+                type='button'
               >
                 Tư vấn gói này
-              </Link>
+              </button>
             </article>
           ))}
         </div>
@@ -103,13 +166,8 @@ function ServicesPage() {
       <section aria-labelledby='closing-title' className='closing-section'>
         <p className='eyebrow'>Cùng bắt đầu</p>
         <h2 id='closing-title'>Bạn muốn kể câu chuyện nào?</h2>
-        <Link className='button button-primary' to='/advice'>Chat với studio</Link>
+        <button className='button button-primary' onClick={handleOpenChat} type='button'>Chat với studio</button>
       </section>
-      <Link aria-label='Mở trang Tư vấn' className='home-chat-launcher' to='/advice'>
-        <svg aria-hidden='true' focusable='false' viewBox='0 0 24 24'>
-          <path d='M4 5.75A2.75 2.75 0 0 1 6.75 3h10.5A2.75 2.75 0 0 1 20 5.75v7.5A2.75 2.75 0 0 1 17.25 16H11l-5 4v-4.25A2.75 2.75 0 0 1 4 13.25z' fill='none' stroke='currentColor' strokeLinejoin='round' strokeWidth='1.7' />
-        </svg>
-      </Link>
     </div>
   );
 }

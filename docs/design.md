@@ -95,7 +95,7 @@ One scale only. Every margin, padding and gap uses these tokens. Values outside 
 - Rounded corners are used across all components. Use `--radius-sm` for compact controls and chips, `--radius-md` for buttons, cards, and panels, `--radius-lg` for larger panels and message bubbles, and `--radius-full` for circular controls. Component CSS must use these tokens only; no raw radius values.
 - No shadows. Hierarchy comes from type scale, weight, colour and spacing.
 - Focus: `outline: 2px solid var(--color-accent); outline-offset: 2px;` on every focusable element. Never remove an outline without this replacement.
-- Floating elements using `position: fixed` are allowed only at `min-width: 1280px`. Below 1280px all elements stay in normal page flow; fixed, sticky, or absolute elements must not cover content. Reserve space with padding on the page container so any floating element never covers content at 1280, 1440, or 1920px. Header and nav stay non-sticky. Screen 1 has no chat panel; from 1280px a small floating shortcut may link directly to Tư vấn. Shadows remain absent.
+- The Screen 1 chat is always in normal page flow; from `min-width: 1280px` it sits in the right column of the hero row; it opens expanded by default and can be minimized in place to a round icon button.
 - No decorative gradients, patterns or ornaments. Screen 1 may use one dark overlay gradient on the hero image to keep the text readable. Hover states are decorative only; no information appears only on hover. No tooltips (they do not work on touch).
 - Respect `prefers-reduced-motion`; no motion is required.
 
@@ -164,7 +164,7 @@ Only if they work; they are links or buttons at least 44px tall at 360 px. Use `
 Row height at least 48px (conversation list rows are links, at least 44px), horizontal padding `--space-5`, 1px `#D6CFC4` divider, hover `#EDE8DE`, active row `#3C1518` with cream text, Manrope 16px.
 
 ### Chat
-Screen 1 has no embedded chat panel; its consultation links and optional desktop launcher open `/advice`, where studio staff continue the conversation. Chat panels use `--radius-md`, and message bubbles use `--radius-lg`. Any floating chat is allowed only from `min-width: 1280px`, with page-container space reserved so it never covers content at 1280, 1440, or 1920px. Below 1280px chat panels stay in normal flow. Customer messages use `#EDE8DE`, studio messages use `#FFFFFF` with a 1px divider border. Each message shows sender and time in caption text. The composer is a labelled input plus a Send button; where sending has no next page in PA#2 the button is disabled with a visible note.
+The Screen 1 chat is always in normal page flow; from `min-width: 1280px` it sits in the right column of the hero row; it opens expanded by default and can be minimized in place to a round icon button. Its “Nhận tư vấn” link opens `/advice`, where studio staff continue the conversation. Chat panels use `--radius-lg`, and message bubbles use `--radius-md`. Customer messages use `#3C1518` with light text; studio messages use `#FFFFFF` with a 1px divider border. Each message shows sender and time. The composer has a visible label and a disabled “Gửi” button with no separate visible note.
 
 ### Images and avatars
 No photographs of real people. Use initials in a rounded block, inline SVG illustrations, or typographic hero treatments. Any licensed image must have its source named in `PROTOTYPE.md`. Every `<img>` has `alt`; decorative SVGs use `aria-hidden="true"`. `img, svg { max-width: 100%; height: auto; }`.

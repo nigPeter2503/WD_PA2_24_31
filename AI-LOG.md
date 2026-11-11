@@ -114,3 +114,20 @@ Kept: The approved week calendar, timeline, booking and deposit layout, shared f
 Changed: Replaced the ReviewPage placeholder and added WeekCalendar, AppointmentTimeline, ReviewBookingCard and review.css. Lint passed. The build initially failed on the checkout path's # character; a temporary subst drive mapping allowed the same source to build successfully into dist/. Chrome checks passed all three routes at 360/768/1280/1440px, the full navigation flow, refresh, keyboard focus, disabled payment, offline local fonts and Review contrast of at least 5.12:1. Review also passed 200% text reflow at 360px and date checks in two time zones. Visual inspection caught a localized month/day hyphen, which was changed to a slash. Nu validation of rendered HTML found 0 errors and 2 redundant-role warnings on Review, 0 errors on Services, and 5 existing generic-div aria-label errors on Advice. Manual DevTools Accessibility review and team-owned submission captures and checker evidence are pending.
 Rejected: Excluded payment processing, payment simulation, booking-state transitions and additional routes in accordance with the approved scope. Recorded the existing Screen 1 missing-chat finding and Screen 2 validator errors for their owners.
 By hand: Đạt approved the design and authorized continuation. The implementation and automated checks were performed by Codex. Đạt's review of the completed UI and this log entry is pending.
+
+## 2026-11-11 — Reworking Screen 1 chat — Ngô Gia Minh
+Prompt author timestamp: Ngô Gia Minh — 2026-11-11 18:25:54 (+07:00)
+Tool: Codex, npm.cmd, rg.
+Asked for: “Rework the Screen 1 chat (route / only).”
+Kept: The hero visuals and copy, service cards, sample work, process section, closing call to action, existing message data, and the navigation label “Tư vấn”.
+Changed: Placed the chat in the hero row, moved its expanded state and focus handling into ServicesPage, replaced the chat’s final link with “Nhận tư vấn”, removed the send note, updated the requested documentation, and rebuilt successfully. The source search found no fixed or sticky positioning.
+Rejected: Removed the earlier floating layout and outdated chat link and note. Browser viewport measurements were not run because Computer Use could not determine Brave’s current URL; the responsive measurements remain unverified.
+
+## 2026-11-11 — Screen 1 chat controls and service selection — Ngô Gia Minh
+Prompt author timestamp: Ngô Gia Minh — 2026-11-11 18:35:38 (+07:00)
+Tool: Codex, npm.cmd, rg.
+Asked for: “Two small changes on Screen 1 (route / only).”
+Kept: The hero layout and copy, chat collapse behavior and messages, “Nhận tư vấn” link, service-card copy, and all content on /advice and /review.
+Changed: Replaced the Screen 1 “Gửi” label with an accessible arrow icon; made the service cards and chat topic share one selected-service state; added pressed/selected styling and reused the open-chat scroll/focus behavior. Updated PROTOTYPE.md. The build succeeded and the requested source searches were run.
+Rejected: Did not alter other routes, tokens, or package files. Browser viewport and contrast measurements were not run because a browser session was unavailable.
+

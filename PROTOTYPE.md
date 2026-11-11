@@ -5,6 +5,8 @@
 | Họ và tên | MSSV |
 | --- | --- |
 | Tô Lãng Nghị | 24120101 |
+| Ngô Gia Minh | 24120095 |
+| Nguyễn Đức Đạt | 24120037 |
 
 ## 2. How to open it
 
@@ -22,7 +24,7 @@ Mở địa chỉ local mà Vite thông báo, thêm các đường dẫn ở b�
 
 | Path | Màn GradStudio | Người dùng làm gì / trạng thái hiện tại | Liên kết mở đến |
 | --- | --- | --- | --- |
-| /#/ | Screen 1 — Services and chat | Khách xem ba dịch vụ và ảnh mẫu, mở tư vấn với studio. | “Chat với studio”, “Tư vấn gói này”, lời mời tư vấn cuối trang và nút chat desktop mở /#/advice. |
+| /#/ | Screen 1 — Services and chat | Khách xem ba dịch vụ và ảnh mẫu, mở tư vấn với studio. | “Tư vấn gói này” chọn chủ đề, cuộn đến chat và focus ô nhập; “Nhận tư vấn” mở /#/advice. Không tạo booking. |
 | /#/advice | Screen 2 — Advice and clash handling | Admin xem hội thoại đã chốt, tìm/lọc danh sách và tạo booking sau khi Linh đồng ý chụp 14:00 ngày 24/10/2026. | Submit “Tạo booking” mở /#/review để khách xem lịch và khoản cọc. |
 | /#/review | Screen 3 — Review appointment and pay deposit | Hiện là placeholder “Lịch chụp của tôi”; phần xem booking và thanh toán chưa triển khai. | Chưa có hành động riêng; dùng điều hướng chung. |
 
@@ -31,7 +33,7 @@ Mở địa chỉ local mà Vite thông báo, thêm các đường dẫn ở b�
 ## 4. Your design choices
 
 - Dùng nền kem, chữ nâu, EB Garamond cho tiêu đề và Manrope cho nội dung; giao diện bo góc và không dùng shadow để giữ phong cách của mẫu tham khảo. Avatar dùng chữ viết tắt.
-- Screen 1 dùng các liên kết sang Tư vấn thay cho chat nhúng để tránh che nội dung. Nút chat nổi chỉ xuất hiện từ 1280px và dẫn sang Screen 2.
+- Chat là panel gọn bên phải hero từ 1280px, ở trong luồng trang dưới 1280px, và có thể thu nhỏ tại chỗ thành nút tròn. Mặc định chat mở rộng.
 - Screen 2 tham khảo mẫu do Google Stitch tạo từ prompt được lưu trong brief.md. Desktop có ba khu vực; tablet có hai cột và lịch phía dưới; mobile xếp dọc. Chat và form cuộn cùng trang, riêng bảng timeline năm hàng cuộn ngang khi cần để giữ nhãn đọc đủ.
 - Screen 2 mở sau khi Linh đồng ý: makeup 13:00–14:00 với Mai, chụp 14:00–16:00 với Tuấn tại Phòng B, giá 1.800.000đ, cọc 540.000đ, còn lại 1.260.000đ. Xung đột 09:00 được giữ dưới dạng ghi chú lịch sử. Ô Linh nét đứt ghi “Đã thống nhất · Chờ cọc”; chỉ thanh toán cọc thành công mới giữ lịch. Các giờ khác là tham khảo, không yêu cầu khách xác nhận lần nữa.
 - Theo yêu cầu khớp mẫu Stitch, riêng ô lịch và ô chú giải dùng màu từ file gốc và góc bo 2px; các thành phần khác dùng radius token của project. Các nút demo, menu không có trang đích và nhãn bị cắt trong mẫu không được sao chép.
@@ -43,7 +45,7 @@ Nguồn hình ảnh:
 
 ## 5. Not wired yet
 
-- Gửi tin nhắn tư vấn chưa nối backend: nút “Gửi” bị vô hiệu hóa và có ghi chú hiển thị.
+- Gửi là nút chỉ có icon mũi tên và bị vô hiệu hóa (sending has no next page in PA#2).
 - Các hội thoại khác chỉ để tham khảo, chưa mở chat riêng. Tìm kiếm và lọc trạng thái chạy cục bộ.
 - Form booking chỉ điều hướng sang /#/review; chưa tạo dữ liệu booking trên server. Các trường được đọc từ dữ liệu mẫu để giữ đúng lịch đã thống nhất.
 - Screen 3 chưa có thông tin booking hay nút thanh toán. Chưa tích hợp cổng thanh toán, gửi xác nhận hoặc nhắc lịch.

@@ -862,3 +862,135 @@ The source files are `src/pages/ReviewPage.jsx`, `src/components/WeekCalendar.js
 | Remaining team evidence | Team-owned submission captures, validator evidence in `checks/`, a manual DevTools Accessibility review and submission documentation updates are pending. The existing Screen 1 missing-chat finding and the Screen 2 validation findings belong to their owners. |
 
 To reproduce the build from this checkout on Windows, map an unused drive letter to the repository with `subst`, run `npm run build` from that drive and remove the mapping afterward. A plain build from the original path still encounters the Vite path issue. The source, lockfile and Vite configuration retain the project's existing setup.
+
+## Ngô Gia Minh — 2026-11-11 18:25:54 (+07:00)
+**Exact prompt:**
+Rework the Screen 1 chat (route / only). This replaces all earlier chat instructions. Touch only the Screen 1 hero/chat markup and logic, its CSS, and the doc lines listed below. Do not touch /advice or /review. Do not commit. Do not edit package.json. No new dependencies. Do NOT change anything else on the page: hero visuals and copy (keep the sentence "Nhân viên studio sẽ tiếp tục tư vấn tại trang Tư vấn."), service cards, sample work, process section, closing call to action.
+\
+
+
+PROBLEM
+
+On wide screens the chat is a large centered card (about 600px wide, about 740px tall) below the hero. It must be a compact panel on the RIGHT side of the hero, about the size of the attached Messenger popup (about 370px wide, about 480-520px tall).
+\
+
+
+LAYOUT (normal flow only; no floating at any width)
+
+- No position: fixed and no position: sticky for the chat or its wrapper.
+
+- Put the hero copy and the chat in one row container. Keep <section id="chat"> with its <h2> (visible, or sr-only) in that row, after the hero copy in DOM order.
+
+- Below 1280px: single column, the chat sits under the hero buttons, left-aligned, width: 100%, max-width: 30rem.
+
+- From min-width 1280px: grid-template-columns: minmax(0, 1fr) minmax(0, 23rem), gap var(--space-6); the chat in the right column with align-self: end (bottom right of the hero). Panel fills its column (about 368px), height auto, no fixed height, no inner scroll area, no overflow auto/hidden.
+
+- Tighten internal spacing with var(--space-3)/var(--space-4). Message text stays >= 16px.
+\
+
+
+OPEN STATE (default)
+
+- Header row (flex, space-between): left = initial avatar "G", "GradStudio", status chip "Đang tư vấn" (14px allowed for the chip); right = minimize <button type="button"> showing only an inline SVG "−" icon (aria-hidden, no icon library), aria-label "Thu nhỏ chat", aria-expanded="true", aria-controls="chat-panel", at least 44x44px.
+
+- Chip "Đang hỏi về: <selected service>" driven by the existing service-card selection (keep that behavior as is).
+
+- Message list (<ol>/<li>), each message with speaker and time: Linh 17:20 "Gói tốt nghiệp có makeup còn lịch 24/10 lúc 09:00 không?" right-aligned on the primary color with light text; GradStudio 17:21 "Để mình kiểm tra lịch cho bạn nhé" left-aligned on a light surface with a 1px border. Panel --radius-lg, bubbles --radius-md. No shadow, no gradient, no typing dots.
+
+- One row: visible <label> "Tin nhắn của bạn" above an <input> (flex: 1, min-width: 0) and a "Gửi" <button disabled>, at least 44px tall. Disabled uses solid colors (no opacity) so text keeps contrast >= 4.5:1.
+
+- Remove the line "Chưa có trang kế tiếp trong bản mẫu" and any other note under the input. Nothing between the input row and the final link.
+
+- Final element: router <Link> to /advice, visible text exactly "Nhận tư vấn" (replaces "Studio staff: open this conversation" everywhere in src/ and src/data/), at least 44px tall, full panel width. Its destination page label in the nav must match the wording "Tư vấn" used in the hero sentence; if the nav label differs, report it and do not change the nav.
+\
+
+
+COLLAPSED STATE
+
+- State in React useState in the Screen 1 component. Default is OPEN on every page load. No localStorage, sessionStorage or URL state, so opening / directly always shows both messages.
+
+- Collapsed: only the round button is rendered (panel content, messages, input and link are not rendered). <section id="chat"> and its <h2> stay in the DOM in both states. No duplicate ids.
+
+- Round button: <button type="button">, at least 56x56px, --radius-full, solid primary background with a light inline SVG chat-bubble icon (aria-hidden), aria-label "Mở chat", aria-expanded="false", aria-controls="chat-panel". No status dot, no badge, no animation.
+
+- Collapsed placement: below 1280px left-aligned where the panel was; from 1280px justify-self: end and align-self: end in the right column. Still normal flow, covers nothing.
+
+- Focus: after minimizing, focus the round button; after reopening, focus the message input. Not a modal: no focus trap, no role="dialog".
+\
+
+
+"CHAT VỚI STUDIO" BUTTONS (hero and closing call to action)
+
+<button type="button">. If the chat is collapsed, expand it first; after it renders, scroll #chat into view and focus the message input (lift state or use a ref and effect so this works from both buttons). Respect prefers-reduced-motion (no smooth scroll). No href="#..." anywhere. The URL hash must not change.
+\
+
+
+DOC UPDATES (authorized here even though AGENTS.md treats design.md as read-only; list every line changed)
+
+- AGENTS.md and docs/design.md: remove the floating-chat exception. State instead: "The Screen 1 chat is always in normal page flow; from min-width 1280px it sits in the right column of the hero row; it opens expanded by default and can be minimized in place to a round icon button." Keep the radius tokens and the rounded-corner rule. Do not copy token values into AGENTS.md.
+
+- AGENTS.md, under the rule about actions with no next page: add one line "Team exception: the Screen 1 Gửi button is disabled with no separate visible note; it is listed in PROTOTYPE.md under controls not wired."
+
+- PROTOTYPE.md: screen table row for Screen 1: link "Nhận tư vấn" opens /advice. "Controls not wired": Gửi (disabled; sending has no next page in PA#2). Design choices that differ from the brief: chat is a compact panel at the right of the hero from 1280px, in normal flow below that, minimizable to a round button. Do not rewrite other sections.
+
+- Search src/, AGENTS.md, docs/ and PROTOTYPE.md for "Studio staff: open this conversation", "Chưa có trang kế tiếp trong bản mẫu", "1280x800" and "floating", and make them consistent with the above.
+\
+
+
+CONSTRAINTS
+
+Plain CSS, mobile first, min-width 768px and 1280px, only var(--space-*) and tokens.css colors/fonts/radius, no overflow-x: hidden, no !important, no fixed widths (use max-width or minmax). Text >= 16px (14px only for chips/captions). Contrast >= 4.5:1. Standalone buttons/links >= 44px tall at 360px. Valid HTML: no duplicate ids, no <div aria-label> without a role, no button inside <a>.
+\
+
+
+DEFINITION OF DONE (report each step; say which you did not run)
+
+1. npm run build succeeds.
+
+2. Run and show: rg -n 'href=.*#|position:\s*(fixed|sticky)|!important|overflow-x' src. Expected: no fixed or sticky.
+
+3. If a browser tool is available, on /#/ at 360, 768, 1280x720, 1440x900 and 1920x1080: scrollWidth > clientWidth is false, the elements-past-clientWidth list is [], and at 1440x900 report #chat's width and height and confirm its left edge is to the right of the hero copy's right edge. Then collapse and reopen and report that nothing shifted into horizontal overflow. If no browser is available, say so and do not claim any measurement.
+
+4. FINAL CHANGE REPORT: list every file you changed and what changed in each, including anything this prompt did not ask for. Revert anything outside the scope above and say what you reverted.
+
+## Ngô Gia Minh — 2026-11-11 18:25:54 (+07:00)
+**Exact prompt:**
+Two small changes on Screen 1 (route / only). Touch only the Screen 1 chat component, the service-card buttons and their handlers, the CSS for those, and the doc lines listed below. Do not touch /advice or /review. Do not commit. Do not edit package.json. No new dependencies. Do NOT run git checkout, git restore, git reset or git stash. Edit by hand.
+
+FINISHED WORK, DO NOT CHANGE: hero illustration and copy, hero buttons, chat layout (right column of the hero from 1280px, in normal flow below), minimize and round-button behavior, the two messages, the "Nhận tư vấn" link text, the "Nhân viên studio sẽ tiếp tục tư vấn tại trang Tư vấn." sentence, sample work, process section, closing call to action, tokens, nav, footer, and anything not listed here.
+
+PART A: "Gửi" becomes an arrow-icon button (Screen 1 chat only)
+- Remove the visible text "Gửi". The button contains only an inline SVG arrow pointing right (stroke uses currentColor, aria-hidden="true", focusable="false", no <title>, no icon library).
+- Keep it <button type="button" disabled>. Give it aria-label="Gửi" so it keeps an accessible name. No title attribute and no tooltip.
+- Make it at least 44x44px, with the icon centered, and keep it on the same row as the input (input keeps flex: 1; min-width: 0). Keep the current radius token. Do not change its border, colors or disabled styling except what is needed to center the icon. The disabled icon must stay clearly visible (solid colors, no opacity).
+- Verify with: rg -n '>\s*Gửi\s*<' src (must show no match inside the Screen 1 chat).
+- Do not touch any "Gửi ..." control on other screens.
+
+PART B: "Tư vấn gói này" points to the chat and stays in sync
+1. Single source of truth: ONE selectedService state in the Screen 1 component, read by both the service cards and the chat. The default is Tốt nghiệp (it matches Linh's message). The chip text is derived from it: "Đang hỏi về: Gói <service name from src/data/>". No duplicated state.
+2. Card selection: the selected card shows a thicker border (3px vs 1px) plus a slightly different surface (not color alone), and its "Tư vấn gói này" button has aria-pressed="true" (false on the others). Right now, in my browser, no card looks selected even though the chip says "Gói Tốt nghiệp". Fix it so the card state and the chip always agree, including on the first render.
+3. Click behavior on ANY card's "Tư vấn gói này" (including the one already selected):
+   a. set selectedService;
+   b. if the chat is collapsed, expand it first;
+   c. after it renders, scroll the <section id="chat"> into view (block: "start"; behavior "smooth", or "auto" when prefers-reduced-motion: reduce) and focus the message input.
+   Reuse the same helper/effect that the "Chat với studio" buttons already use. Do not duplicate that logic. Add scroll-margin-top: var(--space-4) on #chat.
+4. Do not change the messages. Linh's question and the studio's reply stay exactly as they are; only the topic chip changes.
+5. Add aria-live="polite" to the chip so the change is announced.
+6. These stay <button type="button">. No href, no "#", no navigation, no booking, no sending, no slot hold. The URL hash must not change.
+7. The longest chip text ("Đang hỏi về: Gói Chân dung/CV") must wrap inside the panel: no horizontal overflow at 360px, no clipped text.
+
+PART C (OPTIONAL, delete this part if not wanted): contrast of the "Nhận tư vấn" link
+In my browser the "Nhận tư vấn" link at the bottom of the chat looks almost invisible (pale text on a near-white background). Measure its computed text color against its background. If the ratio is below 4.5:1, fix it by changing only that link's text color and background (use tokens from tokens.css, for example primary text on the light surface, or light text on the primary color), keep it >= 44px tall and full panel width, and report the before and after ratios. If it is already >= 4.5:1, change nothing and report the ratio.
+
+DOC UPDATES (list every line changed; do not rewrite other sections)
+- PROTOTYPE.md: in the Screen 1 rows or the "controls" lists, say that "Tư vấn gói này" selects the topic, scrolls to the chat and focuses the message input (no booking is created), and that "Gửi" is an arrow-icon button, disabled (sending has no next page in PA#2).
+- AGENTS.md and docs/design.md: no change unless a statement now contradicts Part A or B; if so, list it and fix only that line.
+
+CONSTRAINTS
+Plain CSS, mobile first, min-width 768px and 1280px, only var(--space-*) and tokens.css colors/fonts/radius, no overflow-x: hidden, no !important, no fixed widths (use max-width or minmax), no position fixed/sticky. Text >= 16px (14px only for chips/captions). Contrast >= 4.5:1. Standalone buttons/links >= 44px tall at 360px. Valid HTML: no duplicate ids, no <div aria-label> without a role, no button inside <a>.
+
+DEFINITION OF DONE (report each step; say which you did not run)
+1. npm run build succeeds.
+2. Run and show: rg -n 'href=.*#|position:\s*(fixed|sticky)|!important|overflow-x' src and rg -n '>\s*Gửi\s*<' src.
+3. If a browser tool is available, on /#/ at 360 and 1440x900: scrollWidth > clientWidth is false and the elements-past-clientWidth list is []. Click each of the three "Tư vấn gói này" buttons and report: chip text, which card has aria-pressed="true", whether #chat is inside the viewport afterwards, whether document.activeElement is the message input, and whether location.hash is unchanged. Collapse the chat, click a card button, and report that the chat expands. Report the Gửi button's width and height. If no browser is available, say so and do not claim any measurement.
+4. FINAL CHANGE REPORT: every file changed and what changed in each, including anything this prompt did not ask for. Revert anything outside the scope above and say what you reverted.
