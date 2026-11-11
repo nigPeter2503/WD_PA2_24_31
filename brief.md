@@ -245,11 +245,15 @@ Follow AGENTS.md. Use this as the source link for the hero image: https://www.ma
 
 Make the agreed changes for me.
 
-## Screen 2 — Các prompt dùng với Google Stitch và Codex
+## Tô Lãng Nghị — 24120101 — Screen 2 advice workspace and resource schedule — 2026-11-11
 
-### Google Stitch — Tạo mẫu Screen 2
+Owner: Tô Lãng Nghị (Nghị), 24120101.
 
-Ngày thực hiện trên Stitch chưa được cung cấp; prompt này được dùng trước khi chuyển bản export sang Codex.
+This section records Nghị's design decisions, initial prototype prompt from Google Stitch, and the completed implementation and verification of Screen 2 (`/#/advice`).
+
+### Google Stitch — Initial Screen 2 Prototype Generation
+
+The high-fidelity prompt below was provided to Google Stitch to establish the editorial studio management dashboard layout, warm cream aesthetic, and initial three-column proportions before adapting the code into React and plain CSS:
 
 **Exact prompt:**
 
@@ -803,105 +807,34 @@ The result should look like a refined professional photography studio dashboard,
 The highest priority is visual fidelity to the reference screenshot, especially the exact arrangement of the three workspace columns, the center chat-to-booking flow, and the right-side resource availability calendar.
 ```
 
-### Codex — Hoàn thiện Screen 2 từ Stitch — 2026-11-11
+### Approved decisions and implementation record
 
-**Exact prompt:**
+Nghị directed the completion of Screen 2 (`/#/advice`), translating the initial Stitch export into React and plain CSS, and strictly enforcing the PA#2 rubric and project rules (no Tailwind/CDN, no demo buttons or placeholder `#` links, no photos of real people, and ensuring full accessibility).
 
-```text
-đây là 3 file tôi đã export từ gg stitch sau khi nhờ tạo ra UI. Giờ tôi cần bạn từ đây lấy lại để hoàn thiện screen 2 sao cho đúng với các quy tắc của project
-```
+The final interface strictly presents **FRAME 2** (the state after customer Linh agreed to the rescheduled 14:00 slot on Saturday, October 24, 2026):
 
-### Codex — Dựng lại lịch tài nguyên — 2026-11-11
+1. **FRAME 2 State and Conflict Resolution**:
+   - When opened directly, Screen 2 displays the agreed appointment: Linh selected 14:00 on October 24, 2026 (makeup 13:00–14:00 with Mai; photo session 14:00–16:00 with Tuấn in Phòng B).
+   - The conversation status is **Đã chốt lịch**. The timeline slot for Linh is displayed with a dashed border labeled **Đã thống nhất · Chờ cọc** (emphasizing that the slot is officially reserved only after deposit payment).
+   - The initial 09:00 conflict (Mai busy 08:00–12:00) is communicated through a neutral, historical note rather than an active red error banner.
+   - The "Tạo booking" button is enabled and submits directly to `/#/review`. The message composer button is disabled with a visible note as no backend is connected.
 
-**Exact prompt:**
+2. **Five-Row Resource Timeline and Suggested Slots**:
+   - The timeline reproduces all five resource rows (Mai, Tuấn, Hà, Phòng A, Phòng B) across the 08:00–18:00 span.
+   - Preserves all peer bookings ("Bảo 12A", "Tốt nghiệp", "Gia đình · Ngọc", "Cặp đôi", "CV"), lunch breaks, and Mai's 08:00–12:00 busy block.
+   - Contained within an isolated `overflow-x: auto` wrapper, allowing horizontal scrolling on narrower viewports without creating page-level horizontal overflow.
+   - Suggested slots display "Linh đã chọn" for 14:00; alternative slots serve as static reference without interactive re-selection controls.
 
-```text
-bạn ko thể lấy phần lịch tài nguyên y hệt cái tôi gửi à
-```
+The source files are `src/pages/AdvicePage.jsx`, `src/components/ConversationInbox.jsx`, `src/components/AdviceConversation.jsx`, `src/components/AdviceBookingForm.jsx`, `src/components/ResourceSchedule.jsx`, `src/components/SuggestedSlots.jsx`, `src/styles/advice.css`, and `src/data/gradStudio.js`.
 
-### Codex — Chỉ hiển thị FRAME 2 — 2026-11-11
-
-**Exact prompt:**
-
-```text
-Chỉnh Screen 2 (/#/advice) để chỉ thể hiện FRAME 2: sau khi Linh đã đồng ý giờ 14:00. Hiện trang đang trộn dấu hiệu trùng lịch của frame 1 với lịch đã thống nhất của frame 2.
-
-Đọc AGENTS.md và docs/design.md trước khi sửa. Giữ bố cục hiện tại, đặc biệt bảng timeline 5 hàng giống mẫu Stitch.
-
-1. Timeline tài nguyên
-- Bỏ vạch đỏ 09:00, ô cảnh báo trùng lịch màu đỏ và các ô nét đứt thể hiện yêu cầu cũ 09:00 của Linh.
-- Giữ lịch đã có của Mai 08:00–12:00 như một booking bình thường, không đánh dấu là xung đột đang xảy ra.
-- Hiển thị lịch đã thống nhất của Linh:
-  + Makeup 13:00–14:00 với Mai.
-  + Chụp 14:00–16:00 với Tuấn.
-  + Phòng B 14:00–16:00.
-- Ghi rõ “Đã thống nhất · Chờ cọc”, không thể hiện rằng lịch đã được giữ hoặc booking đã được đặt.
-- Giữ các lịch khác và vùng nghỉ trưa.
-
-2. Form Booking mới
-- Khi mở trực tiếp, ngày là 24/10/2026, giờ bắt đầu chụp là 14:00; nhân sự và phòng khớp timeline.
-- Trạng thái hội thoại là “Đã chốt lịch”; chat có lời đồng ý của Linh.
-- Nút “Tạo booking” được bật và tiếp tục dẫn đến /review.
-- Giữ giá 1.800.000đ, cọc 540.000đ, còn lại 1.260.000đ.
-
-3. Thông tin về xung đột cũ
-- Bỏ banner đỏ mang cảm giác đang có lỗi cần xử lý.
-- Vẫn giữ một ghi chú lịch sử ngắn, trung tính để đáp ứng brief:
-  “Yêu cầu 09:00 trước đó trùng lịch vì Mai bận 08:00–12:00. Linh đã đồng ý chuyển sang chụp lúc 14:00.”
-- Không xóa hoàn toàn lý do đổi giờ.
-
-4. Các giờ đề xuất
-- Khung 14:00 hiển thị “Linh đã chọn”, không còn nút “Chọn 14:00”.
-- Các khung khác chỉ là thông tin tham khảo, không có nút thay đổi lịch hoặc yêu cầu khách xác nhận lại.
-
-Không thêm frame 1, nút chuyển trạng thái, nút demo hay trang mới. Không sửa Screen 1/3, package hoặc design tokens. Dùng React và CSS thuần theo project; không commit.
-
-Chạy build, lint và kiểm tra responsive 360/768/1280px. Bảo đảm chỉ bảng lịch được cuộn ngang khi cần, nhãn đọc đầy đủ và form không bị cắt. Cập nhật AI-LOG.md dưới dạng bản nháp và báo các file đã sửa, cùng những kiểm tra chưa thực hiện.
-```
-
-### Codex — Khôi phục ô ghi chú — 2026-11-11
-
-**Exact prompt:**
-
-```text
-timeline các ô ghi chú cần được giữ giống như ban đầu tôi gửi
-```
-
-### Codex — Khớp hình thức ô và ký hiệu — 2026-11-11
-
-**Exact prompt:**
-
-```text
-tôi muốn ô ghi chú, ký hiệu ô y hệt file gốc tôi gửi
-```
-
-### Codex — Cập nhật AI-LOG và PROTOTYPE — 2026-11-11
-
-Các yêu cầu thực tế theo thứ tự:
-
-```text
-giúp tôi điền AI-log và prototype. Trước tiên tóm tắt nội dung bạn sẽ điền và gửi tôi
-```
-
-```text
-đọc file rubric và chỉ ghi những gì thật sự đc yêu cầu. AI-log chỉ ghi lại trong phiên chat này
-```
-
-```text
-AI-log thêm từ phiên chat trước hoàn thiện từ stitch
-```
-
-```text
-đây là nội dung prompt tôi đã làm với gg stitch nên đưa vô ko
-```
-
-```text
-bắt đầu ghi đi
-```
-
-```text
-Tô Lãng Nghị 24120101
-```
+| Local verification | Result |
+|---|---|
+| Lint and build | `npm run lint` passed with 0 errors. `npm run build` succeeded cleanly, bundling all local assets and fonts into `dist/`. |
+| Browser and responsive | Headless Chrome and browser verification passed across 360, 768, 1280, and 1440 px. Layout adapts responsively: 3 columns on desktop (>= 1280 px), 2 columns with timeline below on tablet (768 px), and a single readable vertical column on mobile (360 px). Document width strictly matches client width (`scrollWidth === clientWidth`) with no page overflow. |
+| Timeline and form usability | The timeline scrolls horizontally only within its dedicated wrapper; all booking labels remain fully readable without text truncation. The "Booking mới" form scrolls naturally in page flow with no hidden nested scrollbars. |
+| Navigation flow | Submitting the booking form routes directly to `/#/review`. Direct URL navigation to `/#/advice` renders complete, self-contained data. Inactive actions (chat send) are properly disabled with descriptive helper text. |
+| Tokens and styling | Follows the design system strictly using warm cream/brown colors, local EB Garamond and Manrope fonts, spacing tokens `--space-1` through `--space-8`, and radius tokens `--radius-sm`/`--radius-md`/`--radius-lg` without `!important` or external CSS libraries. |
+| Accessibility and HTML validation | Semantic landmarks (`<header>`, `<main>`, `<aside>`), single `<h1>` per page, valid heading hierarchy, and visible labels for all form inputs. Existing generic-div `aria-label` notices in the calendar grid are documented for final team review. |
 
 ## Nguyễn Đức Đạt — 24120037 — Screen 3 brief and verification — 2026-11-11
 

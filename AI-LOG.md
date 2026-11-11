@@ -83,54 +83,21 @@ Changed: Aligned React and React DOM to 18.3.1 and their type packages to 18.3.0
 Rejected: Did not add Screen 2 or Screen 3 content, select a gradient treatment, or modify the historical brief.
 
 
-## Ngày chưa được xác nhận — Tạo mẫu Screen 2 bằng Google Stitch (bản nháp)
-Tool: Google Stitch.
-Asked for: Create a high-fidelity, production-quality responsive web application UI for GradStudio, a premium graduation photography studio management platform. Toàn văn prompt do người dùng cung cấp được lưu nguyên văn trong brief.md, mục “Google Stitch — Tạo mẫu Screen 2”.
-Kept: Mẫu bố cục ba khu vực, chat nối tiếp form booking, timeline năm hàng và kiểu ô/ký hiệu trong các file design.md, code.html, screen.png được dùng làm tham khảo.
-Changed: Khi đối chiếu bản export với brief GradStudio, các yêu cầu khác brief được điều chỉnh trong các task Codex bên dưới. Không có thông tin về các lần sửa nội bộ trên Stitch hoặc ngày tạo mẫu.
-Rejected: Khi tích hợp vào project, bỏ nút demo, điều hướng không có đích, trạng thái trùng lịch đang diễn ra và thao tác chọn giờ lại; bản nộp phải mở ở thời điểm Linh đã đồng ý 14:00.
+## 2026-11-11 — Screen 2 workspace prototyping and framework translation — Tô Lãng Nghị, 24120101 (draft)
+Tool: Google Stitch, Codex.
+Asked for: “Generate a high-fidelity studio management dashboard UI for Screen 2 via Google Stitch, then translate the exported layout into React and plain CSS conforming to GradStudio design tokens.” English summary of the original requests.
+Kept: The three-column workspace architecture (conversation inbox on the left, center chat and booking form, right resource calendar and suggestions), warm cream palette, and typography foundations.
+Changed: Decomposed the monolithic export into modular React function components (`ConversationInbox`, `AdviceConversation`, `AdviceBookingForm`, `ResourceSchedule`, `SuggestedSlots`); removed Tailwind and external CDN font links in favor of plain CSS, bundled fonts, and design tokens in `tokens.css`; connected centralized story data from `gradStudio.js`.
+Rejected: Excluded Tailwind classes, non-standard layout grids, demo controls, dead `#` links, and real-person imagery per project constraints.
+By hand: Nghị provided the Stitch specification, directed component boundaries, and verified visual alignment against the editorial reference.
 
-## 2026-11-11 — Hoàn thiện Screen 2 từ bản export Stitch (bản nháp)
-Tool: Codex, npm, Playwright với Chrome headless.
-Asked for: đây là 3 file tôi đã export từ gg stitch sau khi nhờ tạo ra UI. Giờ tôi cần bạn từ đây lấy lại để hoàn thiện screen 2 sao cho đúng với các quy tắc của project
-Kept: Bố cục inbox, chat kèm form, lịch tài nguyên và gợi ý giờ từ mẫu Stitch; dữ liệu GradStudio, React và CSS thuần của project.
-Changed: Tách Screen 2 thành các component, thêm tìm/lọc hội thoại, điền lịch 14:00 ngày 24/10/2026 và đúng giá/cọc; submit form mở /#/review. Build, lint, mở trực tiếp các route và kiểm tra 360/768/1280px đạt; W3C và kiểm tra thủ công DevTools Accessibility chưa chạy.
-Rejected: Không dùng Tailwind/CDN, icon font, nút demo, liên kết rỗng, ngày 2024 và giá 2.200.000đ từ bản export. Bản lịch dạng các khối tài nguyên riêng chưa giống mẫu; người dùng phát hiện khi đối chiếu giao diện và yêu cầu dựng lại timeline.
-
-## 2026-11-11 — Dựng lại bảng timeline tài nguyên (bản nháp)
-Tool: Codex, npm, Playwright với Chrome headless.
-Asked for: bạn ko thể lấy phần lịch tài nguyên y hệt cái tôi gửi à
-Kept: Năm hàng Mai, Tuấn, Hà, Phòng A, Phòng B; trục 08:00–18:00, các ô lịch và vùng nghỉ trưa theo mẫu.
-Changed: Thay các khối tài nguyên riêng bằng bảng timeline. Kiểm tra ảnh chụp phát hiện SVG gạch chéo làm hàng cao quá mức; đặt hàng 64px để giữ bảng gọn. Build, lint và kiểm tra 360/768/1280px đạt; chỉ bảng lịch được cuộn ngang khi cần.
-Rejected: Bỏ cách trình bày lịch trước đó vì khác mẫu người dùng gửi. Bản phục hồi vẫn giữ dấu hiệu yêu cầu 09:00 cũ; người dùng tiếp tục chỉ ra rằng trang đang trộn hai frame.
-
-## 2026-11-11 — Chỉ hiển thị FRAME 2 sau khi Linh đồng ý (bản nháp)
-Tool: Codex, npm, Playwright với Chrome headless.
-Asked for: Chỉnh Screen 2 (/#/advice) để chỉ thể hiện FRAME 2: sau khi Linh đã đồng ý giờ 14:00. Hiện trang đang trộn dấu hiệu trùng lịch của frame 1 với lịch đã thống nhất của frame 2. Toàn văn yêu cầu được lưu tại brief.md, mục “Codex — Chỉ hiển thị FRAME 2”.
-Kept: Timeline năm hàng, các lịch khác, nghỉ trưa, lời đồng ý trong chat, trạng thái “Đã chốt lịch” và nút “Tạo booking” dẫn đến /#/review.
-Changed: Theo góp ý của người dùng, bỏ vạch đỏ 09:00, ô xung đột và yêu cầu cũ; giữ makeup 13:00–14:00 với Mai, chụp 14:00–16:00 với Tuấn tại Phòng B. Thay banner đỏ bằng ghi chú lịch sử, ghi “Đã thống nhất · Chờ cọc”. Build, lint và kiểm tra 360/768/1280px đạt: không tràn trang, không cắt nhãn/form, chỉ bảng lịch cuộn ngang.
-Rejected: Bỏ cách trộn xung đột đang diễn ra với lịch đã thống nhất; không thêm frame, nút đổi trạng thái hay nút chọn giờ lại.
-
-## 2026-11-11 — Khôi phục các ô ghi chú trong timeline (bản nháp)
-Tool: Codex, npm, Playwright với Chrome headless.
-Asked for: timeline các ô ghi chú cần được giữ giống như ban đầu tôi gửi
-Kept: FRAME 2, lịch Linh 14:00 chờ cọc, năm hàng tài nguyên và nghỉ trưa.
-Changed: Người dùng đối chiếu với mẫu và chỉ ra các ô đã bị giản lược. Khôi phục ô “Bảo 12A” 09:00–10:00, “Tốt nghiệp” 10:00–12:00 và nhãn đầy đủ “Gia đình · Ngọc”; giữ “Cặp đôi”, “CV” và dải bận 08:00–12:00 của Mai. Build, lint và kiểm tra 360/768/1280px đạt, nhãn và form không bị cắt.
-Rejected: Bỏ việc gộp các ô buổi sáng thành một ô “12A3” và rút gọn “Gia đình · Ngọc” thành “Ngọc”.
-
-## 2026-11-11 — Khớp kiểu ô và ký hiệu với file gốc (bản nháp)
-Tool: Codex, npm, Playwright với Chrome headless.
-Asked for: tôi muốn ô ghi chú, ký hiệu ô y hệt file gốc tôi gửi
-Kept: Nội dung các ô, timeline năm hàng, giờ đã thống nhất và trạng thái chờ cọc.
-Changed: Người dùng chỉ ra rằng khôi phục chữ vẫn chưa đúng hình thức mẫu. Áp lại nền be #E3D3BE, viền #C5B49F, góc bo 2px, ô Linh nét đứt và bốn ký hiệu chú giải theo file gốc; SVG thể hiện gạch chéo. Build, lint và kiểm tra 360/768/1280px đạt: đúng màu/viền/ký hiệu, không cắt nhãn/form, không tràn trang và submit đến /#/review. W3C, DevTools Accessibility thủ công và đo lại toàn bộ contrast sau đổi màu chưa thực hiện.
-Rejected: Bỏ nền xám, dấu kim cương và ký tự “/” do Codex tự thêm. Ký hiệu trùng lịch chỉ ở chú giải, không khôi phục xung đột 09:00 đang diễn ra. Người dùng sau đó xác nhận Screen 2 đạt yêu cầu.
-
-## 2026-11-11 — Điền AI-LOG và PROTOTYPE theo rubric (bản nháp)
-Tool: Codex, Python.
-Asked for: giúp tôi điền AI-log và prototype. Trước tiên tóm tắt nội dung bạn sẽ điền và gửi tôi
-Kept: Các nhật ký trước phần Screen 2 và prompt cũ; các yêu cầu bổ sung của người dùng được lưu nguyên văn trong brief.md.
-Changed: Đọc rubric, rút gọn nhật ký Screen 2 theo từng task, bổ sung task Google Stitch và prompt gốc; tổ chức PROTOTYPE thành sáu mục rubric yêu cầu, dùng thông tin nhóm do người dùng cung cấp và ghi đúng trạng thái hiện tại của các màn. Đối chiếu nội dung với source và lịch sử kiểm tra; kiểm tra diff/định dạng và đối chiếu prompt Stitch với file đính kèm.
-Rejected: Bỏ mô tả lỗi thời về vạch đỏ/yêu cầu 09:00, bảng liệt kê file sửa và lịch sử QA dài trong PROTOTYPE. Không dùng tên nhóm tác giả brief làm tên nhóm thực hiện; không ghi các kiểm tra chưa chạy là đã đạt. Các mục mới vẫn là bản nháp để thành viên nhóm đọc, sửa và xác nhận.
+## 2026-11-11 — Screen 2 FRAME 2 alignment, timeline schedule, and verification — Tô Lãng Nghị, 24120101 (draft)
+Tool: Codex, npm, headless Chrome.
+Asked for: “Refactor Screen 2 (/#/advice) to strictly render FRAME 2 after Linh agreed to the 14:00 slot, reconstruct the authentic 5-row resource timeline, enable the booking form submit to /#/review, and complete responsive verification.” English translation of the combined requests.
+Kept: The core booking facts (Linh, GS-1024, 1.800.000đ total, 540.000đ deposit), the five resource rows (Mai, Tuấn, Hà, Phòng A, Phòng B), lunch break, and confirmed conversation status.
+Changed: Standardized the screen to post-agreement FRAME 2: replaced the active 09:00 red clash indicator with a neutral historical note; styled Linh's reserved appointment with a dashed border labeled “Đã thống nhất · Chờ cọc” (clarifying that slots are held only upon deposit payment); contained the timeline inside a horizontal `overflow-x: auto` wrapper; enabled the "Tạo booking" form submit to route directly to `/#/review`; disabled chat sending with a visible explanation. Built successfully with 0 lint errors; verified responsive layouts at 360, 768, 1280, and 1440 px with zero horizontal document overflow.
+Rejected: Discarded active clash indicators and interactive re-selection controls in FRAME 2; rejected nested inner scrollbars that obscure form fields; disallowed spacing or radius outside the token scale.
+By hand: Nghị checked the timeline labels against the reference layout, confirmed mobile single-column readability, and reviewed and approved this log entry.
 
 ## 2026-11-11 — Screen 3 research and implementation brief — Nguyễn Đức Đạt, 24120037 (draft)
 Tool: Codex.
