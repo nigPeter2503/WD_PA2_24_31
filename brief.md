@@ -1029,12 +1029,12 @@ Giữ ca Linh đã thống nhất ngày 24/10/2026: makeup 13:00–14:00 với M
 
 ## 2026-11-11 — Hoàn thiện dự án GradStudio PA#2
 
-**Exact prompt:**
+**Phạm vi hoàn thiện**
 
-Tạo commit cho việc fix screen 2 của tôi và 1 commit là tôi đã hoàn thiện dự án. Sau đó giúp tôi hoàn thiện AI-log, brief. Với 2 entry là fix screen 2 và hoàn thiện dự án. Không thêm bất cứ entry lặt vặt vào.
+Hoàn thiện prototype ba màn để khách xem dịch vụ và mở tư vấn, Admin xem ca đã thống nhất và khách xem lại lịch chụp cùng khoản cọc. Mỗi màn mở trực tiếp được từ route của mình.
 
 **Kết quả triển khai**
 
-- Screen 1 hoàn thiện focus khi xem dịch vụ, chọn gói, thu nhỏ và mở lại chat. Nút gửi bị vô hiệu hóa và có ghi chú. Liên kết “Nhận tư vấn” giải thích nhân viên studio sẽ mở cuộc tư vấn mẫu của Linh.
-- Screen 2 hiển thị lịch đã thống nhất và mở booking GS-1024 trên Screen 3. Khách xem lịch và khoản cọc 540.000đ ngay khi vào Screen 3. Nút cọc bị vô hiệu hóa trong prototype.
-- Bản build và lint chạy thành công. Bộ minh chứng đã có gồm chín ảnh của ba màn ở 360, 768 và 1280 px và ba ảnh Nu HTML Checker báo 0 lỗi, 0 cảnh báo cho bản build.
+- Screen 1 hoàn thiện thao tác chọn gói, thu nhỏ và mở lại chat, cùng focus bàn phím khi chuyển đến danh sách dịch vụ hoặc ô nhập. Nút gửi bị vô hiệu hóa và có ghi chú. “Nhận tư vấn” giải thích việc chuyển sang vai nhân viên studio để mở cuộc tư vấn mẫu của Linh.
+- Screen 2 hiển thị lịch đã thống nhất và chuyển từ “Tạo booking” sang Screen 3. Khách thấy ngay booking GS-1024, khoản cọc 540.000đ và nút thanh toán bị vô hiệu hóa kèm ghi chú.
+- Build và lint đều qua. Bản nộp có chín ảnh chụp ba màn ở 360, 768 và 1280 px, cùng ba ảnh Nu HTML Checker ghi nhận 0 lỗi, 0 cảnh báo.

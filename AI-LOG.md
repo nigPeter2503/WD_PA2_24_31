@@ -169,14 +169,14 @@ Changed: Dùng chung lưới 30 phút cho nhãn giờ và ô lịch. Ghi trạng
 
 Rejected: Bỏ ca 15:00 ngày 24/10 vì trùng Phòng A và Tuấn. Bỏ ca 09:00 ngày 25/10 vì dữ liệu mẫu chưa chứng minh tài nguyên rảnh. Thành viên nhóm xác nhận các mục lịch sử và lưu minh chứng chính thức.
 
-## 2026-11-11 — Hoàn thiện dự án GradStudio PA#2 (bản nháp để nhóm xác nhận)
+## 2026-11-11 — Hoàn thiện dự án GradStudio PA#2
 
-Tool: Codex, Git, npm.
+Tool: Codex, npm, Nu HTML Checker.
 
-Asked for: Tạo commit cho việc fix screen 2 của tôi và 1 commit là tôi đã hoàn thiện dự án. Sau đó giúp tôi hoàn thiện AI-log, brief. Với 2 entry là fix screen 2 và hoàn thiện dự án. Không thêm bất cứ entry lặt vặt vào.
+Asked for: Hoàn thiện luồng ba màn của GradStudio PA#2 và kiểm tra bản nộp (tóm tắt công việc).
 
-Kept: Luồng ba màn của GradStudio, lịch đã thống nhất của Linh, booking GS-1024 và trạng thái chờ cọc của bản mẫu.
+Kept: Luồng Dịch vụ → Tư vấn → Lịch chụp của tôi và ca đã thống nhất của Linh. Booking GS-1024 hiển thị khoản cọc 540.000đ và trạng thái chờ cọc.
 
-Changed: Codex kiểm tra và đóng gói các thay đổi đã có. Screen 1 hoàn thiện focus khi xem dịch vụ, chọn gói và thu nhỏ hoặc mở lại chat, tăng độ rõ của hero và thêm ghi chú cho nút gửi bị vô hiệu hóa. Screen 3 bỏ hai role dư thừa trên danh sách. Đồng bộ PROTOTYPE.md với hành vi ba màn. Chạy lại npm run build và npm run lint thành công. Đối chiếu ba ảnh Nu HTML Checker đã có với tên tệp JS và CSS của bản build mới. Cả ba ảnh đều ghi 0 lỗi, 0 cảnh báo. Bộ ảnh của ba màn có đủ chiều rộng 360, 768 và 1280 px.
+Changed: Nhóm hoàn thiện focus khi xem dịch vụ, chọn gói và thu nhỏ hoặc mở lại chat ở Screen 1. Nút gửi có ghi chú trạng thái, còn liên kết “Nhận tư vấn” giải thích cuộc tư vấn mẫu mà nhân viên studio sẽ mở. Ở Screen 3, nhóm bỏ hai thuộc tính role dư thừa trên danh sách và đồng bộ mô tả ba màn trong PROTOTYPE.md. Build và lint đều qua. Bộ minh chứng gồm chín ảnh chụp ở 360, 768 và 1280 px. Ba ảnh Nu HTML Checker khớp với tài nguyên của bản build và ghi nhận 0 lỗi, 0 cảnh báo.
 
-Rejected: Không có phương án nào bị loại trong bước hoàn thiện. Giữ lại ảnh chụp và kết quả checker đã có trong working tree.
+Rejected: Không ghi nhận phương án nào bị loại ở bước hoàn thiện cuối.
